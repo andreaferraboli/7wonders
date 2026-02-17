@@ -1,0 +1,705 @@
+[
+    {
+        "id": "ALEXANDRIA",
+        "name": {
+            "en": "Alexandria",
+            "it": "Alessandria"
+        },
+        "resource": "GLASS",
+        "sides": {
+            "DAY": {
+                "stages": [
+                    {
+                        "cost": {
+                            "resources": {
+                                "STONE": 2
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_VP",
+                                "value": 3
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "ORE": 2
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "PRODUCE_CHOICE",
+                                "formula": "ANY_RAW"
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "GLASS": 2
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_VP",
+                                "value": 7
+                            }
+                        ]
+                    }
+                ]
+            },
+            "NIGHT": {
+                "stages": [
+                    {
+                        "cost": {
+                            "resources": {
+                                "CLAY": 2
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "PRODUCE_CHOICE",
+                                "formula": "ANY_RAW"
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "WOOD": 2
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "PRODUCE_CHOICE",
+                                "formula": "ANY_MFG"
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "STONE": 3
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_VP",
+                                "value": 7
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "id": "BABYLON",
+        "name": {
+            "en": "Babylon",
+            "it": "Babilonia"
+        },
+        "resource": "CLAY",
+        "sides": {
+            "DAY": {
+                "stages": [
+                    {
+                        "cost": {
+                            "resources": {
+                                "CLAY": 2
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_VP",
+                                "value": 3
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "WOOD": 3
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_SCIENCE_WILD",
+                                "value": 1
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "CLAY": 4
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_VP",
+                                "value": 7
+                            }
+                        ]
+                    }
+                ]
+            },
+            "NIGHT": {
+                "stages": [
+                    {
+                        "cost": {
+                            "resources": {
+                                "LOOM": 1,
+                                "CLAY": 1
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_VP",
+                                "value": 3
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "GLASS": 1,
+                                "WOOD": 2
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "BUILD_LAST_CARD",
+                                "value": 1
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "id": "EPHESUS",
+        "name": {
+            "en": "Ephesus",
+            "it": "Efeso"
+        },
+        "resource": "PAPYRUS",
+        "sides": {
+            "DAY": {
+                "stages": [
+                    {
+                        "cost": {
+                            "resources": {
+                                "STONE": 2
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_VP",
+                                "value": 3
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "WOOD": 2
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_COINS",
+                                "value": 9
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "PAPYRUS": 2
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_VP",
+                                "value": 7
+                            }
+                        ]
+                    }
+                ]
+            },
+            "NIGHT": {
+                "stages": [
+                    {
+                        "cost": {
+                            "resources": {
+                                "STONE": 2
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_VP",
+                                "value": 2
+                            },
+                            {
+                                "action": "GAIN_COINS",
+                                "value": 4
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "WOOD": 2
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_VP",
+                                "value": 3
+                            },
+                            {
+                                "action": "GAIN_COINS",
+                                "value": 4
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "PAPYRUS": 1,
+                                "LOOM": 1,
+                                "GLASS": 1
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_VP",
+                                "value": 5
+                            },
+                            {
+                                "action": "GAIN_COINS",
+                                "value": 4
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "id": "GIZA",
+        "name": {
+            "en": "Giza",
+            "it": "Giza"
+        },
+        "resource": "STONE",
+        "sides": {
+            "DAY": {
+                "stages": [
+                    {
+                        "cost": {
+                            "resources": {
+                                "STONE": 2
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_VP",
+                                "value": 3
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "WOOD": 3
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_VP",
+                                "value": 5
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "STONE": 4
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_VP",
+                                "value": 7
+                            }
+                        ]
+                    }
+                ]
+            },
+            "NIGHT": {
+                "stages": [
+                    {
+                        "cost": {
+                            "resources": {
+                                "WOOD": 2
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_VP",
+                                "value": 3
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "STONE": 3
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_VP",
+                                "value": 5
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "CLAY": 3
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_VP",
+                                "value": 5
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "STONE": 4,
+                                "PAPYRUS": 1
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_VP",
+                                "value": 7
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "id": "HALIKARNASSUS",
+        "name": {
+            "en": "Halicarnassus",
+            "it": "Alicarnasso"
+        },
+        "resource": "LOOM",
+        "sides": {
+            "DAY": {
+                "stages": [
+                    {
+                        "cost": {
+                            "resources": {
+                                "CLAY": 2
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_VP",
+                                "value": 3
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "ORE": 3
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "PLAY_DISCARD",
+                                "value": 1
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "LOOM": 2
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_VP",
+                                "value": 7
+                            }
+                        ]
+                    }
+                ]
+            },
+            "NIGHT": {
+                "stages": [
+                    {
+                        "cost": {
+                            "resources": {
+                                "ORE": 2
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "PLAY_DISCARD",
+                                "value": 1
+                            },
+                            {
+                                "action": "GAIN_VP",
+                                "value": 2
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "CLAY": 3
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "PLAY_DISCARD",
+                                "value": 1
+                            },
+                            {
+                                "action": "GAIN_VP",
+                                "value": 1
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "GLASS": 1,
+                                "PAPYRUS": 1,
+                                "LOOM": 1
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "PLAY_DISCARD",
+                                "value": 1
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "id": "OLYMPIA",
+        "name": {
+            "en": "Olympia",
+            "it": "Olimpia"
+        },
+        "resource": "WOOD",
+        "sides": {
+            "DAY": {
+                "stages": [
+                    {
+                        "cost": {
+                            "resources": {
+                                "WOOD": 2
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_VP",
+                                "value": 3
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "STONE": 2
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "FREE_BUILD",
+                                "value": 1
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "ORE": 2
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_VP",
+                                "value": 7
+                            }
+                        ]
+                    }
+                ]
+            },
+            "NIGHT": {
+                "stages": [
+                    {
+                        "cost": {
+                            "resources": {
+                                "WOOD": 2
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "TRADE_DISCOUNT",
+                                "formula": "TRADE_BOTH_RAW"
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "STONE": 2
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_VP",
+                                "value": 5
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "ORE": 2,
+                                "LOOM": 1
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "COPY_GUILD",
+                                "value": 1
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "id": "RHODES",
+        "name": {
+            "en": "Rhodes",
+            "it": "Rodi"
+        },
+        "resource": "ORE",
+        "sides": {
+            "DAY": {
+                "stages": [
+                    {
+                        "cost": {
+                            "resources": {
+                                "WOOD": 2
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_VP",
+                                "value": 3
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "CLAY": 3
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_MILITARY",
+                                "value": 2
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "ORE": 4
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_VP",
+                                "value": 7
+                            }
+                        ]
+                    }
+                ]
+            },
+            "NIGHT": {
+                "stages": [
+                    {
+                        "cost": {
+                            "resources": {
+                                "STONE": 3
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_MILITARY",
+                                "value": 1
+                            },
+                            {
+                                "action": "GAIN_VP",
+                                "value": 3
+                            },
+                            {
+                                "action": "GAIN_COINS",
+                                "value": 3
+                            }
+                        ]
+                    },
+                    {
+                        "cost": {
+                            "resources": {
+                                "ORE": 4
+                            }
+                        },
+                        "effects": [
+                            {
+                                "action": "GAIN_MILITARY",
+                                "value": 1
+                            },
+                            {
+                                "action": "GAIN_VP",
+                                "value": 4
+                            },
+                            {
+                                "action": "GAIN_COINS",
+                                "value": 4
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+]

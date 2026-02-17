@@ -1,0 +1,1283 @@
+[
+    {
+        "id": "LUMBER_YARD",
+        "name": {
+            "en": "Lumber Yard",
+            "it": "Segheria"
+        },
+        "epoch": 1,
+        "color": "BROWN",
+        "minPlayers": 3,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 0
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE",
+        "producesResource": "WOOD"
+    },
+    {
+        "id": "LUMBER_YARD_4P",
+        "name": {
+            "en": "Lumber Yard",
+            "it": "Segheria"
+        },
+        "epoch": 1,
+        "color": "BROWN",
+        "minPlayers": 4,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 0
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE",
+        "producesResource": "WOOD"
+    },
+    {
+        "id": "STONE_PIT",
+        "name": {
+            "en": "Stone Pit",
+            "it": "Cava di Pietra"
+        },
+        "epoch": 1,
+        "color": "BROWN",
+        "minPlayers": 3,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 0
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE",
+        "producesResource": "STONE"
+    },
+    {
+        "id": "STONE_PIT_5P",
+        "name": {
+            "en": "Stone Pit",
+            "it": "Cava di Pietra"
+        },
+        "epoch": 1,
+        "color": "BROWN",
+        "minPlayers": 5,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 0
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE",
+        "producesResource": "STONE"
+    },
+    {
+        "id": "CLAY_POOL",
+        "name": {
+            "en": "Clay Pool",
+            "it": "Vasca d'Argilla"
+        },
+        "epoch": 1,
+        "color": "BROWN",
+        "minPlayers": 3,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 0
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE",
+        "producesResource": "CLAY"
+    },
+    {
+        "id": "CLAY_POOL_5P",
+        "name": {
+            "en": "Clay Pool",
+            "it": "Vasca d'Argilla"
+        },
+        "epoch": 1,
+        "color": "BROWN",
+        "minPlayers": 5,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 0
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE",
+        "producesResource": "CLAY"
+    },
+    {
+        "id": "ORE_VEIN",
+        "name": {
+            "en": "Ore Vein",
+            "it": "Filone"
+        },
+        "epoch": 1,
+        "color": "BROWN",
+        "minPlayers": 3,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 0
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE",
+        "producesResource": "ORE"
+    },
+    {
+        "id": "ORE_VEIN_4P",
+        "name": {
+            "en": "Ore Vein",
+            "it": "Filone"
+        },
+        "epoch": 1,
+        "color": "BROWN",
+        "minPlayers": 4,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 0
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE",
+        "producesResource": "ORE"
+    },
+    {
+        "id": "TREE_FARM",
+        "name": {
+            "en": "Tree Farm",
+            "it": "Piantagione"
+        },
+        "epoch": 1,
+        "color": "BROWN",
+        "minPlayers": 6,
+        "cost": {
+            "coins": 1
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_CHOICE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 0
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE",
+        "producesChoice": [
+            "WOOD",
+            "CLAY"
+        ]
+    },
+    {
+        "id": "EXCAVATION",
+        "name": {
+            "en": "Excavation",
+            "it": "Scavo"
+        },
+        "epoch": 1,
+        "color": "BROWN",
+        "minPlayers": 4,
+        "cost": {
+            "coins": 1
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_CHOICE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 0
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE",
+        "producesChoice": [
+            "STONE",
+            "CLAY"
+        ]
+    },
+    {
+        "id": "CLAY_PIT",
+        "name": {
+            "en": "Clay Pit",
+            "it": "Fossa d'Argilla"
+        },
+        "epoch": 1,
+        "color": "BROWN",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 1
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_CHOICE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 0
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE",
+        "producesChoice": [
+            "CLAY",
+            "ORE"
+        ]
+    },
+    {
+        "id": "TIMBER_YARD",
+        "name": {
+            "en": "Timber Yard",
+            "it": "Deposito di Legname"
+        },
+        "epoch": 1,
+        "color": "BROWN",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 1
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_CHOICE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 0
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE",
+        "producesChoice": [
+            "STONE",
+            "WOOD"
+        ]
+    },
+    {
+        "id": "FOREST_CAVE",
+        "name": {
+            "en": "Forest Cave",
+            "it": "Grotta della Foresta"
+        },
+        "epoch": 1,
+        "color": "BROWN",
+        "minPlayers": 5,
+        "cost": {
+            "coins": 1
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_CHOICE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 0
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE",
+        "producesChoice": [
+            "WOOD",
+            "ORE"
+        ]
+    },
+    {
+        "id": "MINE",
+        "name": {
+            "en": "Mine",
+            "it": "Miniera"
+        },
+        "epoch": 1,
+        "color": "BROWN",
+        "minPlayers": 6,
+        "cost": {
+            "coins": 1
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_CHOICE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 0
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE",
+        "producesChoice": [
+            "ORE",
+            "STONE"
+        ]
+    },
+    {
+        "id": "LOOM_1",
+        "name": {
+            "en": "Loom",
+            "it": "Telaio"
+        },
+        "epoch": 1,
+        "color": "GREY",
+        "minPlayers": 3,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 0
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE",
+        "producesResource": "LOOM"
+    },
+    {
+        "id": "LOOM_1_6P",
+        "name": {
+            "en": "Loom",
+            "it": "Telaio"
+        },
+        "epoch": 1,
+        "color": "GREY",
+        "minPlayers": 6,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 0
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE",
+        "producesResource": "LOOM"
+    },
+    {
+        "id": "GLASSWORKS_1",
+        "name": {
+            "en": "Glassworks",
+            "it": "Vetreria"
+        },
+        "epoch": 1,
+        "color": "GREY",
+        "minPlayers": 3,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 0
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE",
+        "producesResource": "GLASS"
+    },
+    {
+        "id": "GLASSWORKS_1_6P",
+        "name": {
+            "en": "Glassworks",
+            "it": "Vetreria"
+        },
+        "epoch": 1,
+        "color": "GREY",
+        "minPlayers": 6,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 0
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE",
+        "producesResource": "GLASS"
+    },
+    {
+        "id": "PRESS_1",
+        "name": {
+            "en": "Press",
+            "it": "Pressa"
+        },
+        "epoch": 1,
+        "color": "GREY",
+        "minPlayers": 3,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 0
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE",
+        "producesResource": "PAPYRUS"
+    },
+    {
+        "id": "PRESS_1_6P",
+        "name": {
+            "en": "Press",
+            "it": "Pressa"
+        },
+        "epoch": 1,
+        "color": "GREY",
+        "minPlayers": 6,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 0
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE",
+        "producesResource": "PAPYRUS"
+    },
+    {
+        "id": "PAWNSHOP",
+        "name": {
+            "en": "Pawnshop",
+            "it": "Monte di Pietà"
+        },
+        "epoch": 1,
+        "color": "BLUE",
+        "minPlayers": 4,
+        "cost": {},
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 3,
+                "priority": 50
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE"
+    },
+    {
+        "id": "PAWNSHOP_7P",
+        "name": {
+            "en": "Pawnshop",
+            "it": "Monte di Pietà"
+        },
+        "epoch": 1,
+        "color": "BLUE",
+        "minPlayers": 7,
+        "cost": {},
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 3,
+                "priority": 50
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE"
+    },
+    {
+        "id": "BATHS",
+        "name": {
+            "en": "Baths",
+            "it": "Terme"
+        },
+        "epoch": 1,
+        "color": "BLUE",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "STONE": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 3,
+                "priority": 50
+            }
+        ],
+        "concatenationProvides": [
+            "BATHS_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "BATHS_7P",
+        "name": {
+            "en": "Baths",
+            "it": "Terme"
+        },
+        "epoch": 1,
+        "color": "BLUE",
+        "minPlayers": 7,
+        "cost": {
+            "resources": {
+                "STONE": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 3,
+                "priority": 50
+            }
+        ],
+        "concatenationProvides": [
+            "BATHS_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "ALTAR",
+        "name": {
+            "en": "Altar",
+            "it": "Altare"
+        },
+        "epoch": 1,
+        "color": "BLUE",
+        "minPlayers": 3,
+        "cost": {},
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 2,
+                "priority": 50
+            }
+        ],
+        "concatenationProvides": [
+            "ALTAR_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "ALTAR_5P",
+        "name": {
+            "en": "Altar",
+            "it": "Altare"
+        },
+        "epoch": 1,
+        "color": "BLUE",
+        "minPlayers": 5,
+        "cost": {},
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 2,
+                "priority": 50
+            }
+        ],
+        "concatenationProvides": [
+            "ALTAR_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "THEATER",
+        "name": {
+            "en": "Theater",
+            "it": "Teatro"
+        },
+        "epoch": 1,
+        "color": "BLUE",
+        "minPlayers": 3,
+        "cost": {},
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 2,
+                "priority": 50
+            }
+        ],
+        "concatenationProvides": [
+            "THEATER_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "THEATER_6P",
+        "name": {
+            "en": "Theater",
+            "it": "Teatro"
+        },
+        "epoch": 1,
+        "color": "BLUE",
+        "minPlayers": 6,
+        "cost": {},
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 2,
+                "priority": 50
+            }
+        ],
+        "concatenationProvides": [
+            "THEATER_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "TAVERN",
+        "name": {
+            "en": "Tavern",
+            "it": "Taverna"
+        },
+        "epoch": 1,
+        "color": "YELLOW",
+        "minPlayers": 4,
+        "cost": {},
+        "effects": [
+            {
+                "type": "IMMEDIATE",
+                "timing": "ON_BUILD",
+                "action": "GAIN_COINS",
+                "target": "SELF",
+                "value": 5,
+                "priority": 10
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE"
+    },
+    {
+        "id": "TAVERN_5P",
+        "name": {
+            "en": "Tavern",
+            "it": "Taverna"
+        },
+        "epoch": 1,
+        "color": "YELLOW",
+        "minPlayers": 5,
+        "cost": {},
+        "effects": [
+            {
+                "type": "IMMEDIATE",
+                "timing": "ON_BUILD",
+                "action": "GAIN_COINS",
+                "target": "SELF",
+                "value": 5,
+                "priority": 10
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE"
+    },
+    {
+        "id": "TAVERN_7P",
+        "name": {
+            "en": "Tavern",
+            "it": "Taverna"
+        },
+        "epoch": 1,
+        "color": "YELLOW",
+        "minPlayers": 7,
+        "cost": {},
+        "effects": [
+            {
+                "type": "IMMEDIATE",
+                "timing": "ON_BUILD",
+                "action": "GAIN_COINS",
+                "target": "SELF",
+                "value": 5,
+                "priority": 10
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE"
+    },
+    {
+        "id": "EAST_TRADING_POST",
+        "name": {
+            "en": "East Trading Post",
+            "it": "Fondaco Est"
+        },
+        "epoch": 1,
+        "color": "YELLOW",
+        "minPlayers": 3,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "TRADE_DISCOUNT",
+                "target": "SELF",
+                "value": 1,
+                "priority": 5,
+                "formula": "TRADE_RIGHT_RAW"
+            }
+        ],
+        "concatenationProvides": [
+            "EAST_TRADING_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "EAST_TRADING_POST_7P",
+        "name": {
+            "en": "East Trading Post",
+            "it": "Fondaco Est"
+        },
+        "epoch": 1,
+        "color": "YELLOW",
+        "minPlayers": 7,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "TRADE_DISCOUNT",
+                "target": "SELF",
+                "value": 1,
+                "priority": 5,
+                "formula": "TRADE_RIGHT_RAW"
+            }
+        ],
+        "concatenationProvides": [
+            "EAST_TRADING_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "WEST_TRADING_POST",
+        "name": {
+            "en": "West Trading Post",
+            "it": "Fondaco Ovest"
+        },
+        "epoch": 1,
+        "color": "YELLOW",
+        "minPlayers": 3,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "TRADE_DISCOUNT",
+                "target": "SELF",
+                "value": 1,
+                "priority": 5,
+                "formula": "TRADE_LEFT_RAW"
+            }
+        ],
+        "concatenationProvides": [
+            "WEST_TRADING_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "WEST_TRADING_POST_7P",
+        "name": {
+            "en": "West Trading Post",
+            "it": "Fondaco Ovest"
+        },
+        "epoch": 1,
+        "color": "YELLOW",
+        "minPlayers": 7,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "TRADE_DISCOUNT",
+                "target": "SELF",
+                "value": 1,
+                "priority": 5,
+                "formula": "TRADE_LEFT_RAW"
+            }
+        ],
+        "concatenationProvides": [
+            "WEST_TRADING_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "MARKETPLACE",
+        "name": {
+            "en": "Marketplace",
+            "it": "Mercato"
+        },
+        "epoch": 1,
+        "color": "YELLOW",
+        "minPlayers": 3,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "TRADE_DISCOUNT",
+                "target": "SELF",
+                "value": 1,
+                "priority": 5,
+                "formula": "TRADE_BOTH_MFG"
+            }
+        ],
+        "concatenationProvides": [
+            "MARKETPLACE_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "MARKETPLACE_6P",
+        "name": {
+            "en": "Marketplace",
+            "it": "Mercato"
+        },
+        "epoch": 1,
+        "color": "YELLOW",
+        "minPlayers": 6,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "TRADE_DISCOUNT",
+                "target": "SELF",
+                "value": 1,
+                "priority": 5,
+                "formula": "TRADE_BOTH_MFG"
+            }
+        ],
+        "concatenationProvides": [
+            "MARKETPLACE_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "STOCKADE",
+        "name": {
+            "en": "Stockade",
+            "it": "Palizzata"
+        },
+        "epoch": 1,
+        "color": "RED",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "WOOD": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 1,
+                "priority": 20
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE"
+    },
+    {
+        "id": "STOCKADE_7P",
+        "name": {
+            "en": "Stockade",
+            "it": "Palizzata"
+        },
+        "epoch": 1,
+        "color": "RED",
+        "minPlayers": 7,
+        "cost": {
+            "resources": {
+                "WOOD": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 1,
+                "priority": 20
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE"
+    },
+    {
+        "id": "BARRACKS",
+        "name": {
+            "en": "Barracks",
+            "it": "Caserma"
+        },
+        "epoch": 1,
+        "color": "RED",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "ORE": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 1,
+                "priority": 20
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE"
+    },
+    {
+        "id": "BARRACKS_5P",
+        "name": {
+            "en": "Barracks",
+            "it": "Caserma"
+        },
+        "epoch": 1,
+        "color": "RED",
+        "minPlayers": 5,
+        "cost": {
+            "resources": {
+                "ORE": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 1,
+                "priority": 20
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE"
+    },
+    {
+        "id": "GUARD_TOWER",
+        "name": {
+            "en": "Guard Tower",
+            "it": "Torre di Guardia"
+        },
+        "epoch": 1,
+        "color": "RED",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "CLAY": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 1,
+                "priority": 20
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE"
+    },
+    {
+        "id": "GUARD_TOWER_4P",
+        "name": {
+            "en": "Guard Tower",
+            "it": "Torre di Guardia"
+        },
+        "epoch": 1,
+        "color": "RED",
+        "minPlayers": 4,
+        "cost": {
+            "resources": {
+                "CLAY": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 1,
+                "priority": 20
+            }
+        ],
+        "concatenationProvides": [],
+        "expansion": "BASE"
+    },
+    {
+        "id": "APOTHECARY",
+        "name": {
+            "en": "Apothecary",
+            "it": "Speziale"
+        },
+        "epoch": 1,
+        "color": "GREEN",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "LOOM": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_SCIENCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 30,
+                "formula": "COMPASS"
+            }
+        ],
+        "concatenationProvides": [
+            "APOTHECARY_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "APOTHECARY_5P",
+        "name": {
+            "en": "Apothecary",
+            "it": "Speziale"
+        },
+        "epoch": 1,
+        "color": "GREEN",
+        "minPlayers": 5,
+        "cost": {
+            "resources": {
+                "LOOM": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_SCIENCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 30,
+                "formula": "COMPASS"
+            }
+        ],
+        "concatenationProvides": [
+            "APOTHECARY_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "WORKSHOP",
+        "name": {
+            "en": "Workshop",
+            "it": "Officina"
+        },
+        "epoch": 1,
+        "color": "GREEN",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "GLASS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_SCIENCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 30,
+                "formula": "GEAR"
+            }
+        ],
+        "concatenationProvides": [
+            "WORKSHOP_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "WORKSHOP_7P",
+        "name": {
+            "en": "Workshop",
+            "it": "Officina"
+        },
+        "epoch": 1,
+        "color": "GREEN",
+        "minPlayers": 7,
+        "cost": {
+            "resources": {
+                "GLASS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_SCIENCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 30,
+                "formula": "GEAR"
+            }
+        ],
+        "concatenationProvides": [
+            "WORKSHOP_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "SCRIPTORIUM",
+        "name": {
+            "en": "Scriptorium",
+            "it": "Scriptorium"
+        },
+        "epoch": 1,
+        "color": "GREEN",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "PAPYRUS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_SCIENCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 30,
+                "formula": "TABLET"
+            }
+        ],
+        "concatenationProvides": [
+            "SCRIPTORIUM_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "SCRIPTORIUM_4P",
+        "name": {
+            "en": "Scriptorium",
+            "it": "Scriptorium"
+        },
+        "epoch": 1,
+        "color": "GREEN",
+        "minPlayers": 4,
+        "cost": {
+            "resources": {
+                "PAPYRUS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_SCIENCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 30,
+                "formula": "TABLET"
+            }
+        ],
+        "concatenationProvides": [
+            "SCRIPTORIUM_CHAIN"
+        ],
+        "expansion": "BASE"
+    }
+]

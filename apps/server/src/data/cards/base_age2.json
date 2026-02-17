@@ -1,0 +1,1413 @@
+[
+    {
+        "id": "SAWMILL",
+        "name": {
+            "en": "Sawmill",
+            "it": "Segheria"
+        },
+        "epoch": 2,
+        "color": "BROWN",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 1
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 2,
+                "priority": 0
+            }
+        ],
+        "expansion": "BASE",
+        "producesResource": "WOOD"
+    },
+    {
+        "id": "SAWMILL_4P",
+        "name": {
+            "en": "Sawmill",
+            "it": "Segheria"
+        },
+        "epoch": 2,
+        "color": "BROWN",
+        "minPlayers": 4,
+        "cost": {
+            "coins": 1
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 2,
+                "priority": 0
+            }
+        ],
+        "expansion": "BASE",
+        "producesResource": "WOOD"
+    },
+    {
+        "id": "QUARRY",
+        "name": {
+            "en": "Quarry",
+            "it": "Cava"
+        },
+        "epoch": 2,
+        "color": "BROWN",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 1
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 2,
+                "priority": 0
+            }
+        ],
+        "expansion": "BASE",
+        "producesResource": "STONE"
+    },
+    {
+        "id": "QUARRY_4P",
+        "name": {
+            "en": "Quarry",
+            "it": "Cava"
+        },
+        "epoch": 2,
+        "color": "BROWN",
+        "minPlayers": 4,
+        "cost": {
+            "coins": 1
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 2,
+                "priority": 0
+            }
+        ],
+        "expansion": "BASE",
+        "producesResource": "STONE"
+    },
+    {
+        "id": "BRICKYARD",
+        "name": {
+            "en": "Brickyard",
+            "it": "Fornace"
+        },
+        "epoch": 2,
+        "color": "BROWN",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 1
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 2,
+                "priority": 0
+            }
+        ],
+        "expansion": "BASE",
+        "producesResource": "CLAY"
+    },
+    {
+        "id": "BRICKYARD_4P",
+        "name": {
+            "en": "Brickyard",
+            "it": "Fornace"
+        },
+        "epoch": 2,
+        "color": "BROWN",
+        "minPlayers": 4,
+        "cost": {
+            "coins": 1
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 2,
+                "priority": 0
+            }
+        ],
+        "expansion": "BASE",
+        "producesResource": "CLAY"
+    },
+    {
+        "id": "FOUNDRY",
+        "name": {
+            "en": "Foundry",
+            "it": "Fonderia"
+        },
+        "epoch": 2,
+        "color": "BROWN",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 1
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 2,
+                "priority": 0
+            }
+        ],
+        "expansion": "BASE",
+        "producesResource": "ORE"
+    },
+    {
+        "id": "FOUNDRY_4P",
+        "name": {
+            "en": "Foundry",
+            "it": "Fonderia"
+        },
+        "epoch": 2,
+        "color": "BROWN",
+        "minPlayers": 4,
+        "cost": {
+            "coins": 1
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 2,
+                "priority": 0
+            }
+        ],
+        "expansion": "BASE",
+        "producesResource": "ORE"
+    },
+    {
+        "id": "LOOM_2",
+        "name": {
+            "en": "Loom",
+            "it": "Telaio"
+        },
+        "epoch": 2,
+        "color": "GREY",
+        "minPlayers": 3,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 0
+            }
+        ],
+        "expansion": "BASE",
+        "producesResource": "LOOM"
+    },
+    {
+        "id": "LOOM_2_5P",
+        "name": {
+            "en": "Loom",
+            "it": "Telaio"
+        },
+        "epoch": 2,
+        "color": "GREY",
+        "minPlayers": 5,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 0
+            }
+        ],
+        "expansion": "BASE",
+        "producesResource": "LOOM"
+    },
+    {
+        "id": "GLASSWORKS_2",
+        "name": {
+            "en": "Glassworks",
+            "it": "Vetreria"
+        },
+        "epoch": 2,
+        "color": "GREY",
+        "minPlayers": 3,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 0
+            }
+        ],
+        "expansion": "BASE",
+        "producesResource": "GLASS"
+    },
+    {
+        "id": "GLASSWORKS_2_5P",
+        "name": {
+            "en": "Glassworks",
+            "it": "Vetreria"
+        },
+        "epoch": 2,
+        "color": "GREY",
+        "minPlayers": 5,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 0
+            }
+        ],
+        "expansion": "BASE",
+        "producesResource": "GLASS"
+    },
+    {
+        "id": "PRESS_2",
+        "name": {
+            "en": "Press",
+            "it": "Pressa"
+        },
+        "epoch": 2,
+        "color": "GREY",
+        "minPlayers": 3,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 0
+            }
+        ],
+        "expansion": "BASE",
+        "producesResource": "PAPYRUS"
+    },
+    {
+        "id": "PRESS_2_5P",
+        "name": {
+            "en": "Press",
+            "it": "Pressa"
+        },
+        "epoch": 2,
+        "color": "GREY",
+        "minPlayers": 5,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_RESOURCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 0
+            }
+        ],
+        "expansion": "BASE",
+        "producesResource": "PAPYRUS"
+    },
+    {
+        "id": "AQUEDUCT",
+        "name": {
+            "en": "Aqueduct",
+            "it": "Acquedotto"
+        },
+        "epoch": 2,
+        "color": "BLUE",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "STONE": 3
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 5,
+                "priority": 50
+            }
+        ],
+        "freeIf": [
+            "BATHS_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "AQUEDUCT_7P",
+        "name": {
+            "en": "Aqueduct",
+            "it": "Acquedotto"
+        },
+        "epoch": 2,
+        "color": "BLUE",
+        "minPlayers": 7,
+        "cost": {
+            "resources": {
+                "STONE": 3
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 5,
+                "priority": 50
+            }
+        ],
+        "freeIf": [
+            "BATHS_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "TEMPLE",
+        "name": {
+            "en": "Temple",
+            "it": "Tempio"
+        },
+        "epoch": 2,
+        "color": "BLUE",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "WOOD": 1,
+                "CLAY": 1,
+                "GLASS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 3,
+                "priority": 50
+            }
+        ],
+        "concatenationProvides": [
+            "TEMPLE_CHAIN"
+        ],
+        "freeIf": [
+            "ALTAR_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "TEMPLE_6P",
+        "name": {
+            "en": "Temple",
+            "it": "Tempio"
+        },
+        "epoch": 2,
+        "color": "BLUE",
+        "minPlayers": 6,
+        "cost": {
+            "resources": {
+                "WOOD": 1,
+                "CLAY": 1,
+                "GLASS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 3,
+                "priority": 50
+            }
+        ],
+        "concatenationProvides": [
+            "TEMPLE_CHAIN"
+        ],
+        "freeIf": [
+            "ALTAR_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "STATUE",
+        "name": {
+            "en": "Statue",
+            "it": "Statua"
+        },
+        "epoch": 2,
+        "color": "BLUE",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "ORE": 2,
+                "WOOD": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 4,
+                "priority": 50
+            }
+        ],
+        "concatenationProvides": [
+            "STATUE_CHAIN"
+        ],
+        "freeIf": [
+            "THEATER_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "STATUE_7P",
+        "name": {
+            "en": "Statue",
+            "it": "Statua"
+        },
+        "epoch": 2,
+        "color": "BLUE",
+        "minPlayers": 7,
+        "cost": {
+            "resources": {
+                "ORE": 2,
+                "WOOD": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 4,
+                "priority": 50
+            }
+        ],
+        "concatenationProvides": [
+            "STATUE_CHAIN"
+        ],
+        "freeIf": [
+            "THEATER_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "COURTHOUSE",
+        "name": {
+            "en": "Courthouse",
+            "it": "Tribunale"
+        },
+        "epoch": 2,
+        "color": "BLUE",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "CLAY": 2,
+                "LOOM": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 4,
+                "priority": 50
+            }
+        ],
+        "freeIf": [
+            "SCRIPTORIUM_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "COURTHOUSE_5P",
+        "name": {
+            "en": "Courthouse",
+            "it": "Tribunale"
+        },
+        "epoch": 2,
+        "color": "BLUE",
+        "minPlayers": 5,
+        "cost": {
+            "resources": {
+                "CLAY": 2,
+                "LOOM": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 4,
+                "priority": 50
+            }
+        ],
+        "freeIf": [
+            "SCRIPTORIUM_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "FORUM",
+        "name": {
+            "en": "Forum",
+            "it": "Foro"
+        },
+        "epoch": 2,
+        "color": "YELLOW",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "CLAY": 2
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_CHOICE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 5
+            }
+        ],
+        "concatenationProvides": [
+            "FORUM_CHAIN"
+        ],
+        "freeIf": [
+            "EAST_TRADING_CHAIN",
+            "WEST_TRADING_CHAIN"
+        ],
+        "expansion": "BASE",
+        "producesChoice": [
+            "GLASS",
+            "LOOM",
+            "PAPYRUS"
+        ]
+    },
+    {
+        "id": "FORUM_6P",
+        "name": {
+            "en": "Forum",
+            "it": "Foro"
+        },
+        "epoch": 2,
+        "color": "YELLOW",
+        "minPlayers": 6,
+        "cost": {
+            "resources": {
+                "CLAY": 2
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_CHOICE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 5
+            }
+        ],
+        "concatenationProvides": [
+            "FORUM_CHAIN"
+        ],
+        "expansion": "BASE",
+        "producesChoice": [
+            "GLASS",
+            "LOOM",
+            "PAPYRUS"
+        ]
+    },
+    {
+        "id": "FORUM_7P",
+        "name": {
+            "en": "Forum",
+            "it": "Foro"
+        },
+        "epoch": 2,
+        "color": "YELLOW",
+        "minPlayers": 7,
+        "cost": {
+            "resources": {
+                "CLAY": 2
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_CHOICE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 5
+            }
+        ],
+        "concatenationProvides": [
+            "FORUM_CHAIN"
+        ],
+        "expansion": "BASE",
+        "producesChoice": [
+            "GLASS",
+            "LOOM",
+            "PAPYRUS"
+        ]
+    },
+    {
+        "id": "CARAVANSERY",
+        "name": {
+            "en": "Caravansery",
+            "it": "Caravanserraglio"
+        },
+        "epoch": 2,
+        "color": "YELLOW",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "WOOD": 2
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_CHOICE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 5
+            }
+        ],
+        "concatenationProvides": [
+            "CARAVANSERY_CHAIN"
+        ],
+        "freeIf": [
+            "MARKETPLACE_CHAIN"
+        ],
+        "expansion": "BASE",
+        "producesChoice": [
+            "WOOD",
+            "STONE",
+            "CLAY",
+            "ORE"
+        ]
+    },
+    {
+        "id": "CARAVANSERY_5P",
+        "name": {
+            "en": "Caravansery",
+            "it": "Caravanserraglio"
+        },
+        "epoch": 2,
+        "color": "YELLOW",
+        "minPlayers": 5,
+        "cost": {
+            "resources": {
+                "WOOD": 2
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_CHOICE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 5
+            }
+        ],
+        "concatenationProvides": [
+            "CARAVANSERY_CHAIN"
+        ],
+        "expansion": "BASE",
+        "producesChoice": [
+            "WOOD",
+            "STONE",
+            "CLAY",
+            "ORE"
+        ]
+    },
+    {
+        "id": "CARAVANSERY_6P",
+        "name": {
+            "en": "Caravansery",
+            "it": "Caravanserraglio"
+        },
+        "epoch": 2,
+        "color": "YELLOW",
+        "minPlayers": 6,
+        "cost": {
+            "resources": {
+                "WOOD": 2
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_CHOICE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 5
+            }
+        ],
+        "concatenationProvides": [
+            "CARAVANSERY_CHAIN"
+        ],
+        "expansion": "BASE",
+        "producesChoice": [
+            "WOOD",
+            "STONE",
+            "CLAY",
+            "ORE"
+        ]
+    },
+    {
+        "id": "VINEYARD",
+        "name": {
+            "en": "Vineyard",
+            "it": "Vigneto"
+        },
+        "epoch": 2,
+        "color": "YELLOW",
+        "minPlayers": 3,
+        "cost": {},
+        "effects": [
+            {
+                "type": "IMMEDIATE",
+                "timing": "ON_BUILD",
+                "action": "GAIN_COINS",
+                "target": "SELF",
+                "value": 1,
+                "priority": 10,
+                "formula": "COUNT_NEIGHBORS(cards.BROWN)"
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "VINEYARD_6P",
+        "name": {
+            "en": "Vineyard",
+            "it": "Vigneto"
+        },
+        "epoch": 2,
+        "color": "YELLOW",
+        "minPlayers": 6,
+        "cost": {},
+        "effects": [
+            {
+                "type": "IMMEDIATE",
+                "timing": "ON_BUILD",
+                "action": "GAIN_COINS",
+                "target": "SELF",
+                "value": 1,
+                "priority": 10,
+                "formula": "COUNT_NEIGHBORS(cards.BROWN)"
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "BAZAR",
+        "name": {
+            "en": "Bazar",
+            "it": "Bazar"
+        },
+        "epoch": 2,
+        "color": "YELLOW",
+        "minPlayers": 4,
+        "cost": {},
+        "effects": [
+            {
+                "type": "IMMEDIATE",
+                "timing": "ON_BUILD",
+                "action": "GAIN_COINS",
+                "target": "SELF",
+                "value": 2,
+                "priority": 10,
+                "formula": "COUNT_NEIGHBORS(cards.GREY)"
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "BAZAR_7P",
+        "name": {
+            "en": "Bazar",
+            "it": "Bazar"
+        },
+        "epoch": 2,
+        "color": "YELLOW",
+        "minPlayers": 7,
+        "cost": {},
+        "effects": [
+            {
+                "type": "IMMEDIATE",
+                "timing": "ON_BUILD",
+                "action": "GAIN_COINS",
+                "target": "SELF",
+                "value": 2,
+                "priority": 10,
+                "formula": "COUNT_NEIGHBORS(cards.GREY)"
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "WALLS",
+        "name": {
+            "en": "Walls",
+            "it": "Mura"
+        },
+        "epoch": 2,
+        "color": "RED",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "STONE": 3
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 2,
+                "priority": 20
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "WALLS_7P",
+        "name": {
+            "en": "Walls",
+            "it": "Mura"
+        },
+        "epoch": 2,
+        "color": "RED",
+        "minPlayers": 7,
+        "cost": {
+            "resources": {
+                "STONE": 3
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 2,
+                "priority": 20
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "TRAINING_GROUND",
+        "name": {
+            "en": "Training Ground",
+            "it": "Campo di Addestramento"
+        },
+        "epoch": 2,
+        "color": "RED",
+        "minPlayers": 4,
+        "cost": {
+            "resources": {
+                "ORE": 2,
+                "WOOD": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 2,
+                "priority": 20
+            }
+        ],
+        "concatenationProvides": [
+            "TRAINING_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "TRAINING_GROUND_6P",
+        "name": {
+            "en": "Training Ground",
+            "it": "Campo di Addestramento"
+        },
+        "epoch": 2,
+        "color": "RED",
+        "minPlayers": 6,
+        "cost": {
+            "resources": {
+                "ORE": 2,
+                "WOOD": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 2,
+                "priority": 20
+            }
+        ],
+        "concatenationProvides": [
+            "TRAINING_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "TRAINING_GROUND_7P",
+        "name": {
+            "en": "Training Ground",
+            "it": "Campo di Addestramento"
+        },
+        "epoch": 2,
+        "color": "RED",
+        "minPlayers": 7,
+        "cost": {
+            "resources": {
+                "ORE": 2,
+                "WOOD": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 2,
+                "priority": 20
+            }
+        ],
+        "concatenationProvides": [
+            "TRAINING_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "STABLES",
+        "name": {
+            "en": "Stables",
+            "it": "Scuderie"
+        },
+        "epoch": 2,
+        "color": "RED",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "CLAY": 1,
+                "WOOD": 1,
+                "ORE": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 2,
+                "priority": 20
+            }
+        ],
+        "freeIf": [
+            "APOTHECARY_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "STABLES_5P",
+        "name": {
+            "en": "Stables",
+            "it": "Scuderie"
+        },
+        "epoch": 2,
+        "color": "RED",
+        "minPlayers": 5,
+        "cost": {
+            "resources": {
+                "CLAY": 1,
+                "WOOD": 1,
+                "ORE": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 2,
+                "priority": 20
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "ARCHERY_RANGE",
+        "name": {
+            "en": "Archery Range",
+            "it": "Campo di Tiro"
+        },
+        "epoch": 2,
+        "color": "RED",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "WOOD": 2,
+                "ORE": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 2,
+                "priority": 20
+            }
+        ],
+        "freeIf": [
+            "WORKSHOP_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "ARCHERY_RANGE_6P",
+        "name": {
+            "en": "Archery Range",
+            "it": "Campo di Tiro"
+        },
+        "epoch": 2,
+        "color": "RED",
+        "minPlayers": 6,
+        "cost": {
+            "resources": {
+                "WOOD": 2,
+                "ORE": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 2,
+                "priority": 20
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "DISPENSARY",
+        "name": {
+            "en": "Dispensary",
+            "it": "Dispensario"
+        },
+        "epoch": 2,
+        "color": "GREEN",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "ORE": 2,
+                "GLASS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_SCIENCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 30,
+                "formula": "COMPASS"
+            }
+        ],
+        "concatenationProvides": [
+            "DISPENSARY_CHAIN"
+        ],
+        "freeIf": [
+            "APOTHECARY_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "DISPENSARY_4P",
+        "name": {
+            "en": "Dispensary",
+            "it": "Dispensario"
+        },
+        "epoch": 2,
+        "color": "GREEN",
+        "minPlayers": 4,
+        "cost": {
+            "resources": {
+                "ORE": 2,
+                "GLASS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_SCIENCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 30,
+                "formula": "COMPASS"
+            }
+        ],
+        "concatenationProvides": [
+            "DISPENSARY_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "LABORATORY",
+        "name": {
+            "en": "Laboratory",
+            "it": "Laboratorio"
+        },
+        "epoch": 2,
+        "color": "GREEN",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "CLAY": 2,
+                "PAPYRUS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_SCIENCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 30,
+                "formula": "GEAR"
+            }
+        ],
+        "concatenationProvides": [
+            "LABORATORY_CHAIN"
+        ],
+        "freeIf": [
+            "WORKSHOP_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "LABORATORY_5P",
+        "name": {
+            "en": "Laboratory",
+            "it": "Laboratorio"
+        },
+        "epoch": 2,
+        "color": "GREEN",
+        "minPlayers": 5,
+        "cost": {
+            "resources": {
+                "CLAY": 2,
+                "PAPYRUS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_SCIENCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 30,
+                "formula": "GEAR"
+            }
+        ],
+        "concatenationProvides": [
+            "LABORATORY_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "LIBRARY",
+        "name": {
+            "en": "Library",
+            "it": "Biblioteca"
+        },
+        "epoch": 2,
+        "color": "GREEN",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "STONE": 2,
+                "LOOM": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_SCIENCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 30,
+                "formula": "TABLET"
+            }
+        ],
+        "concatenationProvides": [
+            "LIBRARY_CHAIN"
+        ],
+        "freeIf": [
+            "SCRIPTORIUM_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "LIBRARY_6P",
+        "name": {
+            "en": "Library",
+            "it": "Biblioteca"
+        },
+        "epoch": 2,
+        "color": "GREEN",
+        "minPlayers": 6,
+        "cost": {
+            "resources": {
+                "STONE": 2,
+                "LOOM": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_SCIENCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 30,
+                "formula": "TABLET"
+            }
+        ],
+        "concatenationProvides": [
+            "LIBRARY_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "SCHOOL",
+        "name": {
+            "en": "School",
+            "it": "Scuola"
+        },
+        "epoch": 2,
+        "color": "GREEN",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "WOOD": 1,
+                "PAPYRUS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_SCIENCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 30,
+                "formula": "TABLET"
+            }
+        ],
+        "concatenationProvides": [
+            "SCHOOL_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "SCHOOL_7P",
+        "name": {
+            "en": "School",
+            "it": "Scuola"
+        },
+        "epoch": 2,
+        "color": "GREEN",
+        "minPlayers": 7,
+        "cost": {
+            "resources": {
+                "WOOD": 1,
+                "PAPYRUS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_SCIENCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 30,
+                "formula": "TABLET"
+            }
+        ],
+        "concatenationProvides": [
+            "SCHOOL_CHAIN"
+        ],
+        "expansion": "BASE"
+    }
+]

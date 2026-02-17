@@ -1,0 +1,1480 @@
+[
+    {
+        "id": "PANTHEON",
+        "name": {
+            "en": "Pantheon",
+            "it": "Pantheon"
+        },
+        "epoch": 3,
+        "color": "BLUE",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "CLAY": 2,
+                "ORE": 1,
+                "PAPYRUS": 1,
+                "LOOM": 1,
+                "GLASS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 7,
+                "priority": 50
+            }
+        ],
+        "freeIf": [
+            "TEMPLE_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "PANTHEON_6P",
+        "name": {
+            "en": "Pantheon",
+            "it": "Pantheon"
+        },
+        "epoch": 3,
+        "color": "BLUE",
+        "minPlayers": 6,
+        "cost": {
+            "resources": {
+                "CLAY": 2,
+                "ORE": 1,
+                "PAPYRUS": 1,
+                "LOOM": 1,
+                "GLASS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 7,
+                "priority": 50
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "GARDENS",
+        "name": {
+            "en": "Gardens",
+            "it": "Giardini"
+        },
+        "epoch": 3,
+        "color": "BLUE",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "CLAY": 2,
+                "WOOD": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 5,
+                "priority": 50
+            }
+        ],
+        "freeIf": [
+            "STATUE_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "GARDENS_4P",
+        "name": {
+            "en": "Gardens",
+            "it": "Giardini"
+        },
+        "epoch": 3,
+        "color": "BLUE",
+        "minPlayers": 4,
+        "cost": {
+            "resources": {
+                "CLAY": 2,
+                "WOOD": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 5,
+                "priority": 50
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "TOWN_HALL",
+        "name": {
+            "en": "Town Hall",
+            "it": "Municipio"
+        },
+        "epoch": 3,
+        "color": "BLUE",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "STONE": 2,
+                "ORE": 1,
+                "GLASS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 6,
+                "priority": 50
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "TOWN_HALL_5P",
+        "name": {
+            "en": "Town Hall",
+            "it": "Municipio"
+        },
+        "epoch": 3,
+        "color": "BLUE",
+        "minPlayers": 5,
+        "cost": {
+            "resources": {
+                "STONE": 2,
+                "ORE": 1,
+                "GLASS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 6,
+                "priority": 50
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "TOWN_HALL_6P",
+        "name": {
+            "en": "Town Hall",
+            "it": "Municipio"
+        },
+        "epoch": 3,
+        "color": "BLUE",
+        "minPlayers": 6,
+        "cost": {
+            "resources": {
+                "STONE": 2,
+                "ORE": 1,
+                "GLASS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 6,
+                "priority": 50
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "PALACE",
+        "name": {
+            "en": "Palace",
+            "it": "Palazzo"
+        },
+        "epoch": 3,
+        "color": "BLUE",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "STONE": 1,
+                "ORE": 1,
+                "WOOD": 1,
+                "CLAY": 1,
+                "GLASS": 1,
+                "PAPYRUS": 1,
+                "LOOM": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 8,
+                "priority": 50
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "PALACE_7P",
+        "name": {
+            "en": "Palace",
+            "it": "Palazzo"
+        },
+        "epoch": 3,
+        "color": "BLUE",
+        "minPlayers": 7,
+        "cost": {
+            "resources": {
+                "STONE": 1,
+                "ORE": 1,
+                "WOOD": 1,
+                "CLAY": 1,
+                "GLASS": 1,
+                "PAPYRUS": 1,
+                "LOOM": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 8,
+                "priority": 50
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "SENATE",
+        "name": {
+            "en": "Senate",
+            "it": "Senato"
+        },
+        "epoch": 3,
+        "color": "BLUE",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "WOOD": 2,
+                "STONE": 1,
+                "ORE": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 6,
+                "priority": 50
+            }
+        ],
+        "freeIf": [
+            "LIBRARY_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "SENATE_5P",
+        "name": {
+            "en": "Senate",
+            "it": "Senato"
+        },
+        "epoch": 3,
+        "color": "BLUE",
+        "minPlayers": 5,
+        "cost": {
+            "resources": {
+                "WOOD": 2,
+                "STONE": 1,
+                "ORE": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 6,
+                "priority": 50
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "HAVEN",
+        "name": {
+            "en": "Haven",
+            "it": "Porto"
+        },
+        "epoch": 3,
+        "color": "YELLOW",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "WOOD": 1,
+                "ORE": 1,
+                "LOOM": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 40,
+                "formula": "COUNT(cards.BROWN) * 1"
+            },
+            {
+                "type": "IMMEDIATE",
+                "timing": "ON_BUILD",
+                "action": "GAIN_COINS",
+                "target": "SELF",
+                "value": 1,
+                "priority": 10,
+                "formula": "COUNT(cards.BROWN)"
+            }
+        ],
+        "freeIf": [
+            "FORUM_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "HAVEN_4P",
+        "name": {
+            "en": "Haven",
+            "it": "Porto"
+        },
+        "epoch": 3,
+        "color": "YELLOW",
+        "minPlayers": 4,
+        "cost": {
+            "resources": {
+                "WOOD": 1,
+                "ORE": 1,
+                "LOOM": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 40,
+                "formula": "COUNT(cards.BROWN) * 1"
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "LIGHTHOUSE",
+        "name": {
+            "en": "Lighthouse",
+            "it": "Faro"
+        },
+        "epoch": 3,
+        "color": "YELLOW",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "STONE": 1,
+                "GLASS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 40,
+                "formula": "COUNT(cards.YELLOW) * 1"
+            },
+            {
+                "type": "IMMEDIATE",
+                "timing": "ON_BUILD",
+                "action": "GAIN_COINS",
+                "target": "SELF",
+                "value": 1,
+                "priority": 10,
+                "formula": "COUNT(cards.YELLOW)"
+            }
+        ],
+        "freeIf": [
+            "CARAVANSERY_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "LIGHTHOUSE_6P",
+        "name": {
+            "en": "Lighthouse",
+            "it": "Faro"
+        },
+        "epoch": 3,
+        "color": "YELLOW",
+        "minPlayers": 6,
+        "cost": {
+            "resources": {
+                "STONE": 1,
+                "GLASS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 40,
+                "formula": "COUNT(cards.YELLOW) * 1"
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "CHAMBER_OF_COMMERCE",
+        "name": {
+            "en": "Chamber of Commerce",
+            "it": "Camera di Commercio"
+        },
+        "epoch": 3,
+        "color": "YELLOW",
+        "minPlayers": 4,
+        "cost": {
+            "resources": {
+                "CLAY": 2,
+                "PAPYRUS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 40,
+                "formula": "COUNT(cards.GREY) * 2"
+            },
+            {
+                "type": "IMMEDIATE",
+                "timing": "ON_BUILD",
+                "action": "GAIN_COINS",
+                "target": "SELF",
+                "value": 2,
+                "priority": 10,
+                "formula": "COUNT(cards.GREY)"
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "CHAMBER_OF_COMMERCE_6P",
+        "name": {
+            "en": "Chamber of Commerce",
+            "it": "Camera di Commercio"
+        },
+        "epoch": 3,
+        "color": "YELLOW",
+        "minPlayers": 6,
+        "cost": {
+            "resources": {
+                "CLAY": 2,
+                "PAPYRUS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 40,
+                "formula": "COUNT(cards.GREY) * 2"
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "ARENA",
+        "name": {
+            "en": "Arena",
+            "it": "Arena"
+        },
+        "epoch": 3,
+        "color": "YELLOW",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "STONE": 2,
+                "ORE": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 40,
+                "formula": "COUNT(wonder_stages) * 1"
+            },
+            {
+                "type": "IMMEDIATE",
+                "timing": "ON_BUILD",
+                "action": "GAIN_COINS",
+                "target": "SELF",
+                "value": 3,
+                "priority": 10,
+                "formula": "COUNT(wonder_stages)"
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "ARENA_5P",
+        "name": {
+            "en": "Arena",
+            "it": "Arena"
+        },
+        "epoch": 3,
+        "color": "YELLOW",
+        "minPlayers": 5,
+        "cost": {
+            "resources": {
+                "STONE": 2,
+                "ORE": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 40,
+                "formula": "COUNT(wonder_stages) * 1"
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "ARENA_7P",
+        "name": {
+            "en": "Arena",
+            "it": "Arena"
+        },
+        "epoch": 3,
+        "color": "YELLOW",
+        "minPlayers": 7,
+        "cost": {
+            "resources": {
+                "STONE": 2,
+                "ORE": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 40,
+                "formula": "COUNT(wonder_stages) * 1"
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "FORTIFICATIONS",
+        "name": {
+            "en": "Fortifications",
+            "it": "Fortificazioni"
+        },
+        "epoch": 3,
+        "color": "RED",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "ORE": 3,
+                "STONE": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 3,
+                "priority": 20
+            }
+        ],
+        "freeIf": [
+            "WALLS_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "FORTIFICATIONS_7P",
+        "name": {
+            "en": "Fortifications",
+            "it": "Fortificazioni"
+        },
+        "epoch": 3,
+        "color": "RED",
+        "minPlayers": 7,
+        "cost": {
+            "resources": {
+                "ORE": 3,
+                "STONE": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 3,
+                "priority": 20
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "CIRCUS",
+        "name": {
+            "en": "Circus",
+            "it": "Circo"
+        },
+        "epoch": 3,
+        "color": "RED",
+        "minPlayers": 4,
+        "cost": {
+            "resources": {
+                "STONE": 3,
+                "ORE": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 3,
+                "priority": 20
+            }
+        ],
+        "freeIf": [
+            "TRAINING_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "CIRCUS_5P",
+        "name": {
+            "en": "Circus",
+            "it": "Circo"
+        },
+        "epoch": 3,
+        "color": "RED",
+        "minPlayers": 5,
+        "cost": {
+            "resources": {
+                "STONE": 3,
+                "ORE": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 3,
+                "priority": 20
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "CIRCUS_6P",
+        "name": {
+            "en": "Circus",
+            "it": "Circo"
+        },
+        "epoch": 3,
+        "color": "RED",
+        "minPlayers": 6,
+        "cost": {
+            "resources": {
+                "STONE": 3,
+                "ORE": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 3,
+                "priority": 20
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "ARSENAL",
+        "name": {
+            "en": "Arsenal",
+            "it": "Arsenale"
+        },
+        "epoch": 3,
+        "color": "RED",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "WOOD": 2,
+                "ORE": 1,
+                "LOOM": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 3,
+                "priority": 20
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "ARSENAL_4P",
+        "name": {
+            "en": "Arsenal",
+            "it": "Arsenale"
+        },
+        "epoch": 3,
+        "color": "RED",
+        "minPlayers": 4,
+        "cost": {
+            "resources": {
+                "WOOD": 2,
+                "ORE": 1,
+                "LOOM": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 3,
+                "priority": 20
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "ARSENAL_7P",
+        "name": {
+            "en": "Arsenal",
+            "it": "Arsenale"
+        },
+        "epoch": 3,
+        "color": "RED",
+        "minPlayers": 7,
+        "cost": {
+            "resources": {
+                "WOOD": 2,
+                "ORE": 1,
+                "LOOM": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 3,
+                "priority": 20
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "SIEGE_WORKSHOP",
+        "name": {
+            "en": "Siege Workshop",
+            "it": "Officina d Assedio"
+        },
+        "epoch": 3,
+        "color": "RED",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "CLAY": 3,
+                "WOOD": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 3,
+                "priority": 20
+            }
+        ],
+        "freeIf": [
+            "LABORATORY_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "SIEGE_WORKSHOP_5P",
+        "name": {
+            "en": "Siege Workshop",
+            "it": "Officina d Assedio"
+        },
+        "epoch": 3,
+        "color": "RED",
+        "minPlayers": 5,
+        "cost": {
+            "resources": {
+                "CLAY": 3,
+                "WOOD": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 3,
+                "priority": 20
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "LODGE",
+        "name": {
+            "en": "Lodge",
+            "it": "Loggia"
+        },
+        "epoch": 3,
+        "color": "GREEN",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "CLAY": 2,
+                "LOOM": 1,
+                "PAPYRUS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_SCIENCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 30,
+                "formula": "COMPASS"
+            }
+        ],
+        "freeIf": [
+            "DISPENSARY_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "LODGE_6P",
+        "name": {
+            "en": "Lodge",
+            "it": "Loggia"
+        },
+        "epoch": 3,
+        "color": "GREEN",
+        "minPlayers": 6,
+        "cost": {
+            "resources": {
+                "CLAY": 2,
+                "LOOM": 1,
+                "PAPYRUS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_SCIENCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 30,
+                "formula": "COMPASS"
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "OBSERVATORY",
+        "name": {
+            "en": "Observatory",
+            "it": "Osservatorio"
+        },
+        "epoch": 3,
+        "color": "GREEN",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "ORE": 2,
+                "GLASS": 1,
+                "LOOM": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_SCIENCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 30,
+                "formula": "GEAR"
+            }
+        ],
+        "freeIf": [
+            "LABORATORY_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "OBSERVATORY_7P",
+        "name": {
+            "en": "Observatory",
+            "it": "Osservatorio"
+        },
+        "epoch": 3,
+        "color": "GREEN",
+        "minPlayers": 7,
+        "cost": {
+            "resources": {
+                "ORE": 2,
+                "GLASS": 1,
+                "LOOM": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_SCIENCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 30,
+                "formula": "GEAR"
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "UNIVERSITY",
+        "name": {
+            "en": "University",
+            "it": "Universita"
+        },
+        "epoch": 3,
+        "color": "GREEN",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "WOOD": 2,
+                "PAPYRUS": 1,
+                "GLASS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_SCIENCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 30,
+                "formula": "TABLET"
+            }
+        ],
+        "freeIf": [
+            "LIBRARY_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "UNIVERSITY_4P",
+        "name": {
+            "en": "University",
+            "it": "Universita"
+        },
+        "epoch": 3,
+        "color": "GREEN",
+        "minPlayers": 4,
+        "cost": {
+            "resources": {
+                "WOOD": 2,
+                "PAPYRUS": 1,
+                "GLASS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_SCIENCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 30,
+                "formula": "TABLET"
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "ACADEMY",
+        "name": {
+            "en": "Academy",
+            "it": "Accademia"
+        },
+        "epoch": 3,
+        "color": "GREEN",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "STONE": 3,
+                "GLASS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_SCIENCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 30,
+                "formula": "COMPASS"
+            }
+        ],
+        "freeIf": [
+            "SCHOOL_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "ACADEMY_7P",
+        "name": {
+            "en": "Academy",
+            "it": "Accademia"
+        },
+        "epoch": 3,
+        "color": "GREEN",
+        "minPlayers": 7,
+        "cost": {
+            "resources": {
+                "STONE": 3,
+                "GLASS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_SCIENCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 30,
+                "formula": "COMPASS"
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "STUDY",
+        "name": {
+            "en": "Study",
+            "it": "Studio"
+        },
+        "epoch": 3,
+        "color": "GREEN",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "WOOD": 1,
+                "PAPYRUS": 1,
+                "LOOM": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_SCIENCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 30,
+                "formula": "GEAR"
+            }
+        ],
+        "freeIf": [
+            "SCHOOL_CHAIN"
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "STUDY_5P",
+        "name": {
+            "en": "Study",
+            "it": "Studio"
+        },
+        "epoch": 3,
+        "color": "GREEN",
+        "minPlayers": 5,
+        "cost": {
+            "resources": {
+                "WOOD": 1,
+                "PAPYRUS": 1,
+                "LOOM": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_SCIENCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 30,
+                "formula": "GEAR"
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "WORKERS_GUILD",
+        "name": {
+            "en": "Workers Guild",
+            "it": "Corporazione dei Lavoratori"
+        },
+        "epoch": 3,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "ORE": 2,
+                "CLAY": 1,
+                "STONE": 1,
+                "WOOD": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 60,
+                "formula": "COUNT_NEIGHBORS(cards.BROWN) * 1"
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "CRAFTSMEN_GUILD",
+        "name": {
+            "en": "Craftsmen Guild",
+            "it": "Corporazione degli Artigiani"
+        },
+        "epoch": 3,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "ORE": 2,
+                "STONE": 2
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 60,
+                "formula": "COUNT_NEIGHBORS(cards.GREY) * 2"
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "TRADERS_GUILD",
+        "name": {
+            "en": "Traders Guild",
+            "it": "Corporazione dei Mercanti"
+        },
+        "epoch": 3,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "GLASS": 1,
+                "LOOM": 1,
+                "PAPYRUS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 60,
+                "formula": "COUNT_NEIGHBORS(cards.YELLOW) * 1"
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "PHILOSOPHERS_GUILD",
+        "name": {
+            "en": "Philosophers Guild",
+            "it": "Corporazione dei Filosofi"
+        },
+        "epoch": 3,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "CLAY": 3,
+                "LOOM": 1,
+                "PAPYRUS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 60,
+                "formula": "COUNT_NEIGHBORS(cards.GREEN) * 1"
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "SPIES_GUILD",
+        "name": {
+            "en": "Spies Guild",
+            "it": "Corporazione delle Spie"
+        },
+        "epoch": 3,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "CLAY": 3,
+                "GLASS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 60,
+                "formula": "COUNT_NEIGHBORS(cards.RED) * 1"
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "STRATEGISTS_GUILD",
+        "name": {
+            "en": "Strategists Guild",
+            "it": "Corporazione degli Strateghi"
+        },
+        "epoch": 3,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "ORE": 2,
+                "STONE": 1,
+                "LOOM": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 60,
+                "formula": "COUNT_NEIGHBORS(defeat_tokens) * 1"
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "SHIPOWNERS_GUILD",
+        "name": {
+            "en": "Shipowners Guild",
+            "it": "Corporazione degli Armatori"
+        },
+        "epoch": 3,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "WOOD": 3,
+                "GLASS": 1,
+                "PAPYRUS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 60,
+                "formula": "COUNT(cards.BROWN) + COUNT(cards.GREY) + COUNT(cards.PURPLE)"
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "SCIENTISTS_GUILD",
+        "name": {
+            "en": "Scientists Guild",
+            "it": "Corporazione degli Scienziati"
+        },
+        "epoch": 3,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "WOOD": 2,
+                "ORE": 2,
+                "PAPYRUS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_SCIENCE_WILD",
+                "target": "SELF",
+                "value": 1,
+                "priority": 60
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "MAGISTRATES_GUILD",
+        "name": {
+            "en": "Magistrates Guild",
+            "it": "Corporazione dei Magistrati"
+        },
+        "epoch": 3,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "WOOD": 3,
+                "STONE": 1,
+                "LOOM": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 60,
+                "formula": "COUNT_NEIGHBORS(cards.BLUE) * 1"
+            }
+        ],
+        "expansion": "BASE"
+    },
+    {
+        "id": "BUILDERS_GUILD",
+        "name": {
+            "en": "Builders Guild",
+            "it": "Corporazione dei Costruttori"
+        },
+        "epoch": 3,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "resources": {
+                "STONE": 2,
+                "CLAY": 2,
+                "GLASS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 60,
+                "formula": "COUNT_ALL(wonder_stages) * 1"
+            }
+        ],
+        "expansion": "BASE"
+    }
+]

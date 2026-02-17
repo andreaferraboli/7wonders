@@ -1,0 +1,17 @@
+{
+    "name": "@7wonders/db",
+    "version": "1.0.0",
+    "main": "./src/index.ts",
+    "scripts": {
+        "generate": "prisma generate",
+        "migrate": "prisma migrate dev",
+        "studio": "prisma studio"
+    },
+    "dependencies": {
+        "@prisma/client": "^5.7.0"
+    },
+    "devDependencies": {
+        "prisma": "^5.7.0",
+        "typescript": "^5.3.3"
+    }
+}

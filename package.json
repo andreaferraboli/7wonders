@@ -1,0 +1,19 @@
+{
+    "name": "7wonders-monorepo",
+    "private": true,
+    "scripts": {
+        "dev": "concurrently \"pnpm --filter client dev\" \"pnpm --filter server dev\"",
+        "build": "pnpm --filter shared build && pnpm --filter client build && pnpm --filter server build",
+        "test": "pnpm --recursive test",
+        "test:unit": "jest --passWithNoTests",
+        "db:generate": "pnpm --filter db prisma generate",
+        "db:migrate": "pnpm --filter db prisma migrate dev"
+    },
+    "devDependencies": {
+        "@types/jest": "^29.5.14",
+        "concurrently": "^8.2.2",
+        "jest": "^29.7.0",
+        "ts-jest": "^29.4.6",
+        "typescript": "^5.3.3"
+    }
+}

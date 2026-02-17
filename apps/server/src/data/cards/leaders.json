@@ -1,0 +1,869 @@
+[
+    {
+        "id": "ALEXANDER",
+        "name": {
+            "en": "Alexander",
+            "it": "Alessandro"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 3
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "MILITARY_BONUS",
+                "target": "SELF",
+                "value": 1,
+                "priority": 15,
+                "trigger": {
+                    "condition": "ON_MILITARY_VICTORY"
+                }
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "AMYTIS",
+        "name": {
+            "en": "Amytis",
+            "it": "Amiti"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 4
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 55,
+                "formula": "COUNT(wonder_stages) * 2"
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "ARCHIMEDES",
+        "name": {
+            "en": "Archimedes",
+            "it": "Archimede"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 3
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "DISCOUNT_GREEN",
+                "target": "SELF",
+                "value": 2,
+                "priority": 5
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "ARISTOTLE",
+        "name": {
+            "en": "Aristotle",
+            "it": "Aristotele"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 3
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 55,
+                "formula": "COUNT_SETS(science) * 3"
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "BILKIS",
+        "name": {
+            "en": "Bilkis",
+            "it": "Bilqis"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 4
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "TRADE_ANY_RESOURCE",
+                "target": "SELF",
+                "value": 1,
+                "priority": 5
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "CAESAR",
+        "name": {
+            "en": "Caesar",
+            "it": "Cesare"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 5
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 2,
+                "priority": 20
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "CLEOPATRA",
+        "name": {
+            "en": "Cleopatra",
+            "it": "Cleopatra"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 4
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 55,
+                "formula": "COUNT(cards.BLUE) > 3 ? 5 : 0"
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "CROESUS",
+        "name": {
+            "en": "Croesus",
+            "it": "Creso"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 0
+        },
+        "effects": [
+            {
+                "type": "IMMEDIATE",
+                "timing": "ON_BUILD",
+                "action": "GAIN_COINS",
+                "target": "SELF",
+                "value": 6,
+                "priority": 10
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "EUCLID",
+        "name": {
+            "en": "Euclid",
+            "it": "Euclide"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 3
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 55,
+                "formula": "COUNT_UNIQUE(science) >= 3 ? 7 : 0"
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "HAMMURABI",
+        "name": {
+            "en": "Hammurabi",
+            "it": "Hammurabi"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 2
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "FREE_BUILD_COLOR",
+                "target": "SELF",
+                "priority": 5,
+                "trigger": {
+                    "condition": "ONCE_PER_EPOCH",
+                    "filters": {
+                        "color": "BLUE"
+                    }
+                }
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "HANNIBAL",
+        "name": {
+            "en": "Hannibal",
+            "it": "Annibale"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 2
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 1,
+                "priority": 20
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "HATSHEPSUT",
+        "name": {
+            "en": "Hatshepsut",
+            "it": "Hatshepsut"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 4
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "TRADE_DISCOUNT",
+                "target": "SELF",
+                "value": 1,
+                "priority": 5
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "HIRAM",
+        "name": {
+            "en": "Hiram",
+            "it": "Hiram"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 3
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 55,
+                "formula": "COUNT(cards.PURPLE) * 2"
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "HYPATIA",
+        "name": {
+            "en": "Hypatia",
+            "it": "Ipazia"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 4
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "DISCOUNT_GREEN",
+                "target": "SELF",
+                "value": 1,
+                "priority": 5
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "IMHOTEP",
+        "name": {
+            "en": "Imhotep",
+            "it": "Imhotep"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 3
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "DISCOUNT_WONDER",
+                "target": "SELF",
+                "value": 1,
+                "priority": 5
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "JUSTINIAN",
+        "name": {
+            "en": "Justinian",
+            "it": "Giustiniano"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 3
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 55,
+                "formula": "HAS_ALL_3_COLORS(BLUE,GREEN,RED) ? 3 : 0"
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "LEONIDAS",
+        "name": {
+            "en": "Leonidas",
+            "it": "Leonida"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 2
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "DISCOUNT_RED",
+                "target": "SELF",
+                "value": 2,
+                "priority": 5
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "MAECENAS",
+        "name": {
+            "en": "Maecenas",
+            "it": "Mecenate"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 0
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "FREE_LEADER",
+                "target": "SELF",
+                "value": 1,
+                "priority": 5
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "MIDAS",
+        "name": {
+            "en": "Midas",
+            "it": "Mida"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 3
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 55,
+                "formula": "COUNT(cards.YELLOW) * 1"
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "NEFERTITI",
+        "name": {
+            "en": "Nefertiti",
+            "it": "Nefertiti"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 3
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 55,
+                "formula": "COUNT(leaders) * 2"
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "NERO",
+        "name": {
+            "en": "Nero",
+            "it": "Nerone"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 2
+        },
+        "effects": [
+            {
+                "type": "TRIGGERED",
+                "timing": "ON_TURN_END",
+                "action": "GAIN_COINS",
+                "target": "SELF",
+                "value": 2,
+                "priority": 10,
+                "trigger": {
+                    "condition": "ON_MILITARY_VICTORY"
+                }
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "PERICLES",
+        "name": {
+            "en": "Pericles",
+            "it": "Pericle"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 6
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 55,
+                "formula": "COUNT(cards.RED) * 2"
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "PHIDIAS",
+        "name": {
+            "en": "Phidias",
+            "it": "Fidia"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 3
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 55,
+                "formula": "COUNT(cards.BROWN) + COUNT(cards.GREY)"
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "PLATO",
+        "name": {
+            "en": "Plato",
+            "it": "Platone"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 4
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 55,
+                "formula": "COUNT_UNIQUE_COLORS() * 1"
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "PRAXITELES",
+        "name": {
+            "en": "Praxiteles",
+            "it": "Prassitele"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 3
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 55,
+                "formula": "COUNT(cards.GREY) * 2"
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "PTOLEMY",
+        "name": {
+            "en": "Ptolemy",
+            "it": "Tolomeo"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 3
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 7,
+                "priority": 55
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "PYTHAGORAS",
+        "name": {
+            "en": "Pythagoras",
+            "it": "Pitagora"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 4
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_SCIENCE_WILD",
+                "target": "SELF",
+                "value": 1,
+                "priority": 55
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "RAMSES",
+        "name": {
+            "en": "Ramses",
+            "it": "Ramses"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 3
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "IGNORE_CHAINS",
+                "target": "SELF",
+                "priority": 5
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "SEMIRAMIS",
+        "name": {
+            "en": "Semiramis",
+            "it": "Semiramide"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 2
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 1,
+                "priority": 20
+            },
+            {
+                "type": "IMMEDIATE",
+                "timing": "ON_BUILD",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 1,
+                "priority": 50
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "SOLOMON",
+        "name": {
+            "en": "Solomon",
+            "it": "Salomone"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 3
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "BUILD_FROM_DISCARD",
+                "target": "SELF",
+                "value": 1,
+                "priority": 5
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "STEVIE",
+        "name": {
+            "en": "Stevie",
+            "it": "Stevie"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 4
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "COPY_GUILD",
+                "target": "SELF",
+                "value": 1,
+                "priority": 5
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "TOMYRIS",
+        "name": {
+            "en": "Tomyris",
+            "it": "Tomiri"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 2
+        },
+        "effects": [
+            {
+                "type": "TRIGGERED",
+                "timing": "ON_EPOCH_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 1,
+                "priority": 50,
+                "trigger": {
+                    "condition": "ON_MILITARY_DEFEAT"
+                }
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "VITRUVIUS",
+        "name": {
+            "en": "Vitruvius",
+            "it": "Vitruvio"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 3
+        },
+        "effects": [
+            {
+                "type": "TRIGGERED",
+                "timing": "ON_TURN_END",
+                "action": "GAIN_VP",
+                "target": "SELF",
+                "value": 2,
+                "priority": 50,
+                "trigger": {
+                    "condition": "ON_CHAIN_BUILD"
+                }
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "XENOPHON",
+        "name": {
+            "en": "Xenophon",
+            "it": "Senofonte"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 2
+        },
+        "effects": [
+            {
+                "type": "TRIGGERED",
+                "timing": "ON_TURN_END",
+                "action": "GAIN_COINS",
+                "target": "SELF",
+                "value": 2,
+                "priority": 10,
+                "trigger": {
+                    "condition": "ON_BUILD_YELLOW"
+                }
+            }
+        ],
+        "expansion": "LEADERS"
+    },
+    {
+        "id": "ZENOBIA",
+        "name": {
+            "en": "Zenobia",
+            "it": "Zenobia"
+        },
+        "epoch": 0,
+        "color": "PURPLE",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 2
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "DISCOUNT_BROWN",
+                "target": "SELF",
+                "value": 1,
+                "priority": 5
+            }
+        ],
+        "expansion": "LEADERS"
+    }
+]

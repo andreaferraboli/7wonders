@@ -1,0 +1,664 @@
+[
+    {
+        "id": "SECRET_WAREHOUSE",
+        "name": {
+            "en": "Secret Warehouse",
+            "it": "Magazzino Segreto"
+        },
+        "epoch": 1,
+        "color": "BLACK",
+        "minPlayers": 3,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_CHOICE_ANY",
+                "target": "SELF",
+                "value": 1,
+                "priority": 5
+            }
+        ],
+        "expansion": "CITIES"
+    },
+    {
+        "id": "SECRET_WAREHOUSE_6P",
+        "name": {
+            "en": "Secret Warehouse",
+            "it": "Magazzino Segreto"
+        },
+        "epoch": 1,
+        "color": "BLACK",
+        "minPlayers": 6,
+        "cost": {},
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "PRODUCE_CHOICE_ANY",
+                "target": "SELF",
+                "value": 1,
+                "priority": 5
+            }
+        ],
+        "expansion": "CITIES"
+    },
+    {
+        "id": "HIDEOUT",
+        "name": {
+            "en": "Hideout",
+            "it": "Covo"
+        },
+        "epoch": 1,
+        "color": "BLACK",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 1
+        },
+        "effects": [
+            {
+                "type": "IMMEDIATE",
+                "timing": "ON_BUILD",
+                "action": "LOSE_COINS_NEIGHBORS",
+                "target": "NEIGHBORS",
+                "value": 1,
+                "priority": 25
+            }
+        ],
+        "expansion": "CITIES"
+    },
+    {
+        "id": "HIDEOUT_5P",
+        "name": {
+            "en": "Hideout",
+            "it": "Covo"
+        },
+        "epoch": 1,
+        "color": "BLACK",
+        "minPlayers": 5,
+        "cost": {
+            "coins": 1
+        },
+        "effects": [
+            {
+                "type": "IMMEDIATE",
+                "timing": "ON_BUILD",
+                "action": "LOSE_COINS_NEIGHBORS",
+                "target": "NEIGHBORS",
+                "value": 1,
+                "priority": 25
+            }
+        ],
+        "expansion": "CITIES"
+    },
+    {
+        "id": "GAMBLING_DEN",
+        "name": {
+            "en": "Gambling Den",
+            "it": "Bisca"
+        },
+        "epoch": 1,
+        "color": "BLACK",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 0
+        },
+        "effects": [
+            {
+                "type": "IMMEDIATE",
+                "timing": "ON_BUILD",
+                "action": "GAIN_COINS",
+                "target": "SELF",
+                "value": 6,
+                "priority": 10
+            }
+        ],
+        "concatenationProvides": [
+            "GAMBLING_CHAIN"
+        ],
+        "expansion": "CITIES"
+    },
+    {
+        "id": "GAMBLING_DEN_5P",
+        "name": {
+            "en": "Gambling Den",
+            "it": "Bisca"
+        },
+        "epoch": 1,
+        "color": "BLACK",
+        "minPlayers": 5,
+        "cost": {
+            "coins": 0
+        },
+        "effects": [
+            {
+                "type": "IMMEDIATE",
+                "timing": "ON_BUILD",
+                "action": "GAIN_COINS",
+                "target": "SELF",
+                "value": 6,
+                "priority": 10
+            }
+        ],
+        "concatenationProvides": [
+            "GAMBLING_CHAIN"
+        ],
+        "expansion": "CITIES"
+    },
+    {
+        "id": "CLANDESTINE_DOCK_W",
+        "name": {
+            "en": "Clandestine Dock West",
+            "it": "Molo Clandestino Ovest"
+        },
+        "epoch": 1,
+        "color": "BLACK",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 0
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "SPY_HAND",
+                "target": "SELF",
+                "value": 1,
+                "priority": 5
+            }
+        ],
+        "expansion": "CITIES"
+    },
+    {
+        "id": "CLANDESTINE_DOCK_E",
+        "name": {
+            "en": "Clandestine Dock East",
+            "it": "Molo Clandestino Est"
+        },
+        "epoch": 1,
+        "color": "BLACK",
+        "minPlayers": 4,
+        "cost": {
+            "coins": 0
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "SPY_HAND",
+                "target": "SELF",
+                "value": 1,
+                "priority": 5
+            }
+        ],
+        "expansion": "CITIES"
+    },
+    {
+        "id": "LAIR",
+        "name": {
+            "en": "Lair",
+            "it": "Tana"
+        },
+        "epoch": 2,
+        "color": "BLACK",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 0,
+            "resources": {
+                "ORE": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "IMMEDIATE",
+                "timing": "ON_BUILD",
+                "action": "LOSE_COINS_NEIGHBORS",
+                "target": "NEIGHBORS",
+                "value": 2,
+                "priority": 25
+            }
+        ],
+        "expansion": "CITIES"
+    },
+    {
+        "id": "LAIR_5P",
+        "name": {
+            "en": "Lair",
+            "it": "Tana"
+        },
+        "epoch": 2,
+        "color": "BLACK",
+        "minPlayers": 5,
+        "cost": {
+            "coins": 0,
+            "resources": {
+                "ORE": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "IMMEDIATE",
+                "timing": "ON_BUILD",
+                "action": "LOSE_COINS_NEIGHBORS",
+                "target": "NEIGHBORS",
+                "value": 2,
+                "priority": 25
+            }
+        ],
+        "expansion": "CITIES"
+    },
+    {
+        "id": "ARCHITECT_CABINET",
+        "name": {
+            "en": "Architect Cabinet",
+            "it": "Studio dell Architetto"
+        },
+        "epoch": 2,
+        "color": "BLACK",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 3
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 55,
+                "formula": "COUNT(wonder_stages) * 2"
+            }
+        ],
+        "expansion": "CITIES"
+    },
+    {
+        "id": "ARCHITECT_CABINET_6P",
+        "name": {
+            "en": "Architect Cabinet",
+            "it": "Studio dell Architetto"
+        },
+        "epoch": 2,
+        "color": "BLACK",
+        "minPlayers": 6,
+        "cost": {
+            "coins": 3
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 55,
+                "formula": "COUNT(wonder_stages) * 2"
+            }
+        ],
+        "expansion": "CITIES"
+    },
+    {
+        "id": "CONSULATE",
+        "name": {
+            "en": "Consulate",
+            "it": "Consolato"
+        },
+        "epoch": 2,
+        "color": "BLACK",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 0,
+            "resources": {
+                "LOOM": 1,
+                "PAPYRUS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "DIPLOMACY",
+                "target": "SELF",
+                "value": 1,
+                "priority": 70
+            }
+        ],
+        "expansion": "CITIES"
+    },
+    {
+        "id": "CONSULATE_5P",
+        "name": {
+            "en": "Consulate",
+            "it": "Consolato"
+        },
+        "epoch": 2,
+        "color": "BLACK",
+        "minPlayers": 5,
+        "cost": {
+            "coins": 0,
+            "resources": {
+                "LOOM": 1,
+                "PAPYRUS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "DIPLOMACY",
+                "target": "SELF",
+                "value": 1,
+                "priority": 70
+            }
+        ],
+        "expansion": "CITIES"
+    },
+    {
+        "id": "GAMBLING_HOUSE",
+        "name": {
+            "en": "Gambling House",
+            "it": "Casa da Gioco"
+        },
+        "epoch": 2,
+        "color": "BLACK",
+        "minPlayers": 4,
+        "cost": {
+            "coins": 0
+        },
+        "effects": [
+            {
+                "type": "IMMEDIATE",
+                "timing": "ON_BUILD",
+                "action": "GAIN_COINS",
+                "target": "SELF",
+                "value": 9,
+                "priority": 10
+            }
+        ],
+        "freeIf": [
+            "GAMBLING_CHAIN"
+        ],
+        "expansion": "CITIES"
+    },
+    {
+        "id": "GAMBLING_HOUSE_6P",
+        "name": {
+            "en": "Gambling House",
+            "it": "Casa da Gioco"
+        },
+        "epoch": 2,
+        "color": "BLACK",
+        "minPlayers": 6,
+        "cost": {
+            "coins": 0
+        },
+        "effects": [
+            {
+                "type": "IMMEDIATE",
+                "timing": "ON_BUILD",
+                "action": "GAIN_COINS",
+                "target": "SELF",
+                "value": 9,
+                "priority": 10
+            }
+        ],
+        "expansion": "CITIES"
+    },
+    {
+        "id": "CENOTAPH",
+        "name": {
+            "en": "Cenotaph",
+            "it": "Cenotafio"
+        },
+        "epoch": 3,
+        "color": "BLACK",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 2,
+            "resources": {
+                "STONE": 2,
+                "GLASS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 55,
+                "formula": "COUNT(defeat_tokens) * 2"
+            }
+        ],
+        "expansion": "CITIES"
+    },
+    {
+        "id": "CENOTAPH_6P",
+        "name": {
+            "en": "Cenotaph",
+            "it": "Cenotafio"
+        },
+        "epoch": 3,
+        "color": "BLACK",
+        "minPlayers": 6,
+        "cost": {
+            "coins": 2,
+            "resources": {
+                "STONE": 2,
+                "GLASS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 55,
+                "formula": "COUNT(defeat_tokens) * 2"
+            }
+        ],
+        "expansion": "CITIES"
+    },
+    {
+        "id": "CONTINGENT",
+        "name": {
+            "en": "Contingent",
+            "it": "Contingente"
+        },
+        "epoch": 3,
+        "color": "BLACK",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 5,
+            "resources": {
+                "WOOD": 2,
+                "CLAY": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 5,
+                "priority": 20
+            }
+        ],
+        "expansion": "CITIES"
+    },
+    {
+        "id": "CONTINGENT_5P",
+        "name": {
+            "en": "Contingent",
+            "it": "Contingente"
+        },
+        "epoch": 3,
+        "color": "BLACK",
+        "minPlayers": 5,
+        "cost": {
+            "coins": 5,
+            "resources": {
+                "WOOD": 2,
+                "CLAY": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "GAIN_MILITARY",
+                "target": "SELF",
+                "value": 5,
+                "priority": 20
+            }
+        ],
+        "expansion": "CITIES"
+    },
+    {
+        "id": "BROTHERHOOD",
+        "name": {
+            "en": "Brotherhood",
+            "it": "Confraternita"
+        },
+        "epoch": 3,
+        "color": "BLACK",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 0,
+            "resources": {
+                "STONE": 1,
+                "LOOM": 1,
+                "GLASS": 1,
+                "PAPYRUS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 55,
+                "formula": "COUNT(cards.BLACK) * 3"
+            }
+        ],
+        "expansion": "CITIES"
+    },
+    {
+        "id": "BROTHERHOOD_4P",
+        "name": {
+            "en": "Brotherhood",
+            "it": "Confraternita"
+        },
+        "epoch": 3,
+        "color": "BLACK",
+        "minPlayers": 4,
+        "cost": {
+            "coins": 0,
+            "resources": {
+                "STONE": 1,
+                "LOOM": 1,
+                "GLASS": 1,
+                "PAPYRUS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "END_GAME",
+                "timing": "ON_GAME_END",
+                "action": "GAIN_VP_FORMULA",
+                "target": "SELF",
+                "priority": 55,
+                "formula": "COUNT(cards.BLACK) * 3"
+            }
+        ],
+        "expansion": "CITIES"
+    },
+    {
+        "id": "EMBASSY",
+        "name": {
+            "en": "Embassy",
+            "it": "Ambasciata"
+        },
+        "epoch": 3,
+        "color": "BLACK",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 0,
+            "resources": {
+                "ORE": 2,
+                "STONE": 1,
+                "PAPYRUS": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "PERSISTENT",
+                "timing": "ON_BUILD",
+                "action": "DIPLOMACY",
+                "target": "SELF",
+                "value": 1,
+                "priority": 70
+            }
+        ],
+        "expansion": "CITIES"
+    },
+    {
+        "id": "SLAVE_MARKET",
+        "name": {
+            "en": "Slave Market",
+            "it": "Mercato degli Schiavi"
+        },
+        "epoch": 3,
+        "color": "BLACK",
+        "minPlayers": 3,
+        "cost": {
+            "coins": 0,
+            "resources": {
+                "WOOD": 1,
+                "ORE": 1,
+                "CLAY": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "IMMEDIATE",
+                "timing": "ON_BUILD",
+                "action": "GAIN_COINS_VP",
+                "target": "SELF",
+                "value": 5,
+                "priority": 45
+            }
+        ],
+        "expansion": "CITIES"
+    },
+    {
+        "id": "SLAVE_MARKET_6P",
+        "name": {
+            "en": "Slave Market",
+            "it": "Mercato degli Schiavi"
+        },
+        "epoch": 3,
+        "color": "BLACK",
+        "minPlayers": 6,
+        "cost": {
+            "coins": 0,
+            "resources": {
+                "WOOD": 1,
+                "ORE": 1,
+                "CLAY": 1
+            }
+        },
+        "effects": [
+            {
+                "type": "IMMEDIATE",
+                "timing": "ON_BUILD",
+                "action": "GAIN_COINS_VP",
+                "target": "SELF",
+                "value": 5,
+                "priority": 45
+            }
+        ],
+        "expansion": "CITIES"
+    }
+]
