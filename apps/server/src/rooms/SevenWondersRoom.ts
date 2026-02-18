@@ -2,7 +2,6 @@ import { Room, Client } from "@colyseus/core";
 import { GameState } from "../schemas/GameState";
 import { Player } from "../schemas/Player";
 import { GameEngine } from "../engine/GameEngine";
-import { AIPlayer } from "../engine/AIPlayer";
 import { getWonderStages } from "../data/wonders/database";
 import type { PlayerAction, GameConfig } from "@7wonders/shared";
 import { RECONNECTION_GRACE_PERIOD } from "@7wonders/shared";
@@ -41,7 +40,23 @@ export class SevenWondersRoom extends Room<GameState> {
             this.handleSelectCard(client, message as PlayerAction);
         });
 
-        console.log(`✅ Room ${this.roomId} created (${config.playerCount} players)`);
+        // Host can manually start the game (fills remaining slots with AI)
+        this.onMessage("start_game", (client) => {
+            if (this.state.phase !== "LOBBY") {
+                client.send("error", { code: "ALREADY_STARTED", message: "Game already started" });
+                return;
+            }
+            if (this.state.players.size < 1) {
+                client.send("error", { code: "NO_PLAYERS", message: "Need at least 1 player" });
+                return;
+            }
+            console.log(`🚀 Host ${client.sessionId} requested game start`);
+            this.fillWithAI();
+            this.lock();
+            this.startGame();
+        });
+
+        console.log(`✅ Room ${this.roomId} created (${config.playerCount} players, AI: ${config.allowAI})`);
     }
 
     onJoin(client: Client, options: { userId?: string }) {
@@ -62,11 +77,38 @@ export class SevenWondersRoom extends Room<GameState> {
             totalPlayers: this.state.players.size,
         });
 
-        // Se tutti presenti, inizia partita
         const requiredPlayers = this.state.serverData?.config.playerCount ?? 3;
-        if (this.state.players.size >= requiredPlayers) {
-            this.lock(); // No more players
+        const allowAI = this.state.serverData?.config.allowAI ?? false;
+
+        if (allowAI && this.state.players.size === 1) {
+            // AI mode: auto-fill and start immediately
+            console.log(`🤖 AI mode: filling ${requiredPlayers - 1} AI players and starting...`);
+            this.fillWithAI();
+            this.lock();
             this.startGame();
+        } else if (this.state.players.size >= requiredPlayers) {
+            // All humans joined
+            this.lock();
+            this.startGame();
+        }
+        // Otherwise stay in LOBBY, wait for more players or host start_game
+    }
+
+    /** Fill remaining player slots with AI bots */
+    private fillWithAI() {
+        const requiredPlayers = this.state.serverData?.config.playerCount ?? 3;
+        const currentCount = this.state.players.size;
+
+        for (let i = currentCount; i < requiredPlayers; i++) {
+            const aiId = `ai_${i}`;
+            const aiPlayer = new Player();
+            aiPlayer.sessionId = aiId;
+            aiPlayer.userId = aiId;
+            aiPlayer.position = i;
+            aiPlayer.coins = 3;
+            aiPlayer.isAI = true;
+            this.state.players.set(aiId, aiPlayer);
+            console.log(`🤖 Added AI player: ${aiId} (position ${i})`);
         }
     }
 
@@ -94,53 +136,83 @@ export class SevenWondersRoom extends Room<GameState> {
     // ========== GAME FLOW ==========
 
     private startGame() {
-        console.log(`🎮 Starting game in room ${this.roomId}...`);
+        try {
+            console.log(`🎮 Starting game in room ${this.roomId}...`);
 
-        const playerIds = Array.from(this.state.players.keys());
-        this.engine.initializeGame(playerIds);
-
-        // Assegna meraviglie
-        const wonders = this.engine.assignWonders();
-        playerIds.forEach((sessionId, index) => {
-            const player = this.state.players.get(sessionId);
-            if (player) {
-                player.wonderId = wonders[index].id;
-                player.wonderSide = wonders[index].side;
+            const playerIds = Array.from(this.state.players.keys());
+            if (playerIds.length === 0) {
+                console.error("❌ No players to start game!");
+                return;
             }
-        });
 
-        // Inizia epoca 1
-        this.startEpoch(1);
+            this.engine.initializeGame(playerIds);
+
+            // Assegna meraviglie
+            console.log("Assigning wonders...");
+            const wonders = this.engine.assignWonders();
+            playerIds.forEach((sessionId, index) => {
+                const player = this.state.players.get(sessionId);
+                if (player) {
+                    player.wonderId = wonders[index].id;
+                    player.wonderSide = wonders[index].side;
+                    console.log(`Player ${player.sessionId} assigned ${player.wonderId}`);
+                }
+            });
+
+            // Inizia epoca 1
+            console.log("Starting epoch 1...");
+            this.startEpoch(1);
+        } catch (e) {
+            console.error("❌ Error in startGame:", e);
+            this.broadcast("error", {
+                code: "GAME_START_FAILED",
+                message: `Failed to start game: ${e instanceof Error ? e.message : String(e)}`,
+            });
+        }
     }
 
     private startEpoch(epoch: number) {
-        this.state.epoch = epoch;
-        this.state.turn = 1;
-        this.state.phase = "DRAFT";
-        this.state.direction = epoch === 2 ? "RIGHT" : "LEFT";
+        try {
+            this.state.epoch = epoch;
+            this.state.turn = 1;
+            this.state.phase = "DRAFT";
+            this.state.direction = epoch === 2 ? "RIGHT" : "LEFT";
 
-        // Distribuisci carte
-        const hands = this.engine.dealCards(epoch);
-        hands.forEach((hand, sessionId) => {
-            const player = this.state.players.get(sessionId);
-            if (player) {
-                player.hand.clear();
-                hand.forEach((cardId) => player.hand.push(cardId));
-                player.isReady = false;
-                player.selectedCard = "";
-                player.selectedAction = "";
+            // Distribuisci carte
+            console.log(`Dealing cards for epoch ${epoch}...`);
+            const hands = this.engine.dealCards(epoch);
+            if (!hands || hands.size === 0) {
+                console.error("❌ No cards dealt!");
+                throw new Error("No cards dealt from engine");
             }
-        });
 
-        this.broadcast("epoch_start", { epoch, direction: this.state.direction });
-        console.log(`🏛️ Epoch ${epoch} started (direction: ${this.state.direction})`);
+            hands.forEach((hand, sessionId) => {
+                const player = this.state.players.get(sessionId);
+                if (player) {
+                    player.hand.clear();
+                    hand.forEach((cardId) => player.hand.push(cardId));
+                    player.isReady = false;
+                    player.selectedCard = "";
+                    player.selectedAction = "";
+                }
+            });
 
-        // Handle AI players
-        this.state.players.forEach((player) => {
-            if (player.isAI && !player.isReady) {
-                this.handleAITurn(player);
-            }
-        });
+            this.broadcast("epoch_start", { epoch, direction: this.state.direction });
+            console.log(`🏛️ Epoch ${epoch} started (direction: ${this.state.direction})`);
+
+            // Handle AI players
+            this.state.players.forEach((player) => {
+                if (player.isAI && !player.isReady) {
+                    this.handleAITurn(player);
+                }
+            });
+        } catch (e) {
+            console.error("❌ Error in startEpoch:", e);
+            this.broadcast("error", {
+                code: "EPOCH_START_FAILED",
+                message: `Failed to start epoch ${epoch}: ${e instanceof Error ? e.message : String(e)}`,
+            });
+        }
     }
 
     // ========== ACTIONS ==========
@@ -265,7 +337,7 @@ export class SevenWondersRoom extends Room<GameState> {
 
         // Collect current hands
         const tempHands: string[][] = playerArray.map((p) =>
-            Array.from(p.hand)
+            Array.from(p.hand) as string[]
         );
 
         // Pass based on direction
@@ -362,38 +434,40 @@ export class SevenWondersRoom extends Room<GameState> {
         const hand = Array.from(player.hand);
         if (hand.length === 0) return;
 
-        // Build AI context from game state
-        const playerArray = Array.from(this.state.players.values());
-        const playerIndex = playerArray.findIndex(p => p.sessionId === player.sessionId);
-        const leftNeighbor = playerArray[(playerIndex - 1 + playerArray.length) % playerArray.length];
-        const rightNeighbor = playerArray[(playerIndex + 1) % playerArray.length];
+        // Simple AI: randomly choose build/sell with first card
+        const wonderInfo = {
+            id: player.wonderId,
+            stagesBuilt: player.wonderStagesBuilt,
+            totalStages: 3, // default
+        };
 
-        // Determine wonder total stages
-        const wonderStages = getWonderStages(player.wonderId, player.wonderSide as "DAY" | "NIGHT");
-        const wonderTotalStages = wonderStages.length;
+        // Try to get actual total stages
+        try {
+            const wonderStages = getWonderStages(player.wonderId, player.wonderSide as "DAY" | "NIGHT");
+            wonderInfo.totalStages = wonderStages.length;
+        } catch { /* use default */ }
 
-        // Create AI instance with deterministic seed per player
-        const aiSeed = `${this.state.seed}-ai-${player.sessionId}-${this.state.epoch}-${this.state.turn}`;
-        const ai = new AIPlayer(aiSeed);
+        // Simple heuristic: build first card, or sell if can't
+        const builtCards = Array.from(player.cityCards);
+        let action: PlayerAction;
 
-        const action = ai.chooseAction(
-            player.sessionId,
-            hand.filter((c): c is string => typeof c === 'string'),
-            Array.from(player.cityCards).filter((c): c is string => typeof c === 'string'),
-            player.coins,
-            this.state.epoch,
-            player.militaryPower,
-            leftNeighbor?.militaryPower ?? 0,
-            rightNeighbor?.militaryPower ?? 0,
-            Array.from(leftNeighbor?.cityCards ?? []).filter((c): c is string => typeof c === 'string'),
-            Array.from(rightNeighbor?.cityCards ?? []).filter((c): c is string => typeof c === 'string'),
-            player.wonderStagesBuilt,
-            wonderTotalStages,
-            player.scienceCompass,
-            player.scienceGear,
-            player.scienceTablet,
-            { leftRaw: false, rightRaw: false, bothMfg: false }
-        );
+        // Pick a card that's not already built
+        const unbuildCard = hand.find(c => !builtCards.includes(c));
+
+        if (unbuildCard) {
+            // 70% chance build, 20% wonder, 10% sell
+            const roll = Math.random();
+            if (roll < 0.7) {
+                action = { playerId: player.sessionId, cardId: unbuildCard, action: "BUILD" };
+            } else if (roll < 0.9 && wonderInfo.stagesBuilt < wonderInfo.totalStages) {
+                action = { playerId: player.sessionId, cardId: hand[hand.length - 1]!, action: "WONDER" };
+            } else {
+                action = { playerId: player.sessionId, cardId: hand[hand.length - 1]!, action: "SELL" };
+            }
+        } else {
+            // All cards already built, sell
+            action = { playerId: player.sessionId, cardId: hand[0]!, action: "SELL" };
+        }
 
         // Apply AI action
         player.selectedCard = action.cardId;
@@ -424,7 +498,5 @@ export class SevenWondersRoom extends Room<GameState> {
 
     private async persistGame(_scores: unknown): Promise<void> {
         // TODO: Implement with Prisma
-        // const prisma = new PrismaClient();
-        // await prisma.game.update({ ... });
     }
 }

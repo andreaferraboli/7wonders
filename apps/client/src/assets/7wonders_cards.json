@@ -1,0 +1,632 @@
+{
+  "cards": [
+    {
+      "name": "cantiere_di_abbattimento",
+      "players": [
+        3,
+        4
+      ],
+      "age": 1
+    },
+    {
+      "name": "cava_pietra",
+      "players": [
+        3,
+        5
+      ],
+      "age": 1
+    },
+    {
+      "name": "bacino_argilla",
+      "players": [
+        3,
+        5
+      ],
+      "age": 1
+    },
+    {
+      "name": "filone_minerario",
+      "players": [
+        3,
+        4
+      ],
+      "age": 1
+    },
+    {
+      "name": "vivaio",
+      "players": [
+        6
+      ],
+      "age": 1
+    },
+    {
+      "name": "scavi",
+      "players": [
+        4
+      ],
+      "age": 1
+    },
+    {
+      "name": "fossa_argilla",
+      "players": [
+        3
+      ],
+      "age": 1
+    },
+    {
+      "name": "deposito_legname",
+      "players": [
+        3
+      ],
+      "age": 1
+    },
+    {
+      "name": "giacimento",
+      "players": [
+        5
+      ],
+      "age": 1
+    },
+    {
+      "name": "miniera",
+      "players": [
+        6
+      ],
+      "age": 1
+    },
+    {
+      "name": "vetreria",
+      "players": [
+        3,
+        6
+      ],
+      "age": 1
+    },
+    {
+      "name": "stamperia",
+      "players": [
+        3,
+        6
+      ],
+      "age": 1
+    },
+    {
+      "name": "filanda",
+      "players": [
+        3,
+        6
+      ],
+      "age": 1
+    },
+    {
+      "name": "pozzo",
+      "players": [
+        4,
+        7
+      ],
+      "age": 1
+    },
+    {
+      "name": "bagni",
+      "players": [
+        3,
+        7
+      ],
+      "age": 1
+    },
+    {
+      "name": "altare",
+      "players": [
+        3,
+        5
+      ],
+      "age": 1
+    },
+    {
+      "name": "teatro",
+      "players": [
+        3,
+        6
+      ],
+      "age": 1
+    },
+    {
+      "name": "taverna",
+      "players": [
+        4,
+        5,
+        7
+      ],
+      "age": 1
+    },
+    {
+      "name": "mercato",
+      "players": [
+        3,
+        6
+      ],
+      "age": 1
+    },
+    {
+      "name": "stazione_commerciale_ovest",
+      "players": [
+        3,
+        7
+      ],
+      "age": 1
+    },
+    {
+      "name": "stazione_commerciale_est",
+      "players": [
+        3,
+        7
+      ],
+      "age": 1
+    },
+    {
+      "name": "palizzata",
+      "players": [
+        3,
+        7
+      ],
+      "age": 1
+    },
+    {
+      "name": "caserma",
+      "players": [
+        3,
+        5
+      ],
+      "age": 1
+    },
+    {
+      "name": "torre_di_guardia",
+      "players": [
+        3,
+        4
+      ],
+      "age": 1
+    },
+    {
+      "name": "farmacia",
+      "players": [
+        3,
+        5
+      ],
+      "age": 1
+    },
+    {
+      "name": "opificio",
+      "players": [
+        3,
+        7
+      ],
+      "age": 1
+    },
+    {
+      "name": "scrittorio",
+      "players": [
+        3,
+        4
+      ],
+      "age": 1
+    },
+    {
+      "name": "segheria",
+      "players": [
+        3,
+        4
+      ],
+      "age": 2
+    },
+    {
+      "name": "tagliapietre",
+      "players": [
+        3,
+        4
+      ],
+      "age": 2
+    },
+    {
+      "name": "mattonificio",
+      "players": [
+        3,
+        4
+      ],
+      "age": 2
+    },
+    {
+      "name": "fonderia",
+      "players": [
+        3,
+        4
+      ],
+      "age": 2
+    },
+    {
+      "name": "vetreria",
+      "players": [
+        3,
+        5
+      ],
+      "age": 2
+    },
+    {
+      "name": "stamperia",
+      "players": [
+        3,
+        5
+      ],
+      "age": 2
+    },
+    {
+      "name": "filanda",
+      "players": [
+        3,
+        5
+      ],
+      "age": 2
+    },
+    {
+      "name": "statua",
+      "players": [
+        3,
+        7
+      ],
+      "age": 2
+    },
+    {
+      "name": "acquedotto",
+      "players": [
+        3,
+        7
+      ],
+      "age": 2
+    },
+    {
+      "name": "tempio",
+      "players": [
+        3,
+	6
+      ],
+      "age": 2
+    },
+    {
+      "name": "tribunale",
+      "players": [
+        3,
+        5
+      ],
+      "age": 2
+    },
+    {
+      "name": "caravanserraglio",
+      "players": [
+        3,
+        5,
+        6
+      ],
+      "age": 2
+    },
+    {
+      "name": "foro",
+      "players": [
+        3,
+        6,
+        7
+      ],
+      "age": 2
+    },
+    {
+      "name": "vigneto",
+      "players": [
+        3,
+        6
+      ],
+      "age": 2
+    },
+    {
+      "name": "bazar",
+      "players": [
+        4,
+        7
+      ],
+      "age": 2
+    },
+    {
+      "name": "scuderie",
+      "players": [
+        3,
+        5
+      ],
+      "age": 2
+    },
+    {
+      "name": "campo_di_tiro_con_l_arco",
+      "players": [
+        3,
+        6
+      ],
+      "age": 2
+    },
+    {
+      "name": "mura",
+      "players": [
+        3,
+        7
+      ],
+      "age": 2
+    },
+    {
+      "name": "zona_di_addestramento",
+      "players": [
+        4,
+        6,
+        7
+      ],
+      "age": 2
+    },
+    {
+      "name": "ambulatorio",
+      "players": [
+        3,
+        4
+      ],
+      "age": 2
+    },
+    {
+      "name": "laboratorio",
+      "players": [
+        3,
+        5
+      ],
+      "age": 2
+    },
+    {
+      "name": "biblioteca",
+      "players": [
+        3,
+        6
+      ],
+      "age": 2
+    },
+    {
+      "name": "scuola",
+      "players": [
+        3,
+        7
+      ],
+      "age": 2
+    },
+    {
+      "name": "pantheon",
+      "players": [
+        3,
+        6
+      ],
+      "age": 3
+    },
+    {
+      "name": "giardini",
+      "players": [
+        3,
+        4
+      ],
+      "age": 3
+    },
+    {
+      "name": "municipio",
+      "players": [
+        3,
+        6
+      ],
+      "age": 3
+    },
+    {
+      "name": "palazzo",
+      "players": [
+        3,
+        7
+      ],
+      "age": 3
+    },
+    {
+      "name": "senato",
+      "players": [
+        3,
+        5
+      ],
+      "age": 3
+    },
+    {
+      "name": "faro",
+      "players": [
+        3,
+        6
+      ],
+      "age": 3
+    },
+    {
+      "name": "porto",
+      "players": [
+        3,
+        4
+      ],
+      "age": 3
+    },
+    {
+      "name": "camera_di_commercio",
+      "players": [
+        4,
+        6
+      ],
+      "age": 3
+    },
+    {
+      "name": "arena",
+      "players": [
+        3,
+        5
+      ],
+      "age": 3
+    },
+    {
+      "name": "arsenale",
+      "players": [
+        3,
+        5
+      ],
+      "age": 3
+    },
+    {
+      "name": "fortificazioni",
+      "players": [
+        3,
+        7
+      ],
+      "age": 3
+    },
+    {
+      "name": "opificio_d_assedio",
+      "players": [
+        3,
+        5
+      ],
+      "age": 3
+    },
+    {
+      "name": "circo",
+      "players": [
+        4,
+        6
+      ],
+      "age": 3
+    },
+    {
+      "name": "loggia",
+      "players": [
+        3,
+        6
+      ],
+      "age": 3
+    },
+    {
+      "name": "osservatorio",
+      "players": [
+        3,
+        7
+      ],
+      "age": 3
+    },
+    {
+      "name": "accademia",
+      "players": [
+        3,
+        7
+      ],
+      "age": 3
+    },
+    {
+      "name": "universita",
+      "players": [
+        3,
+        4
+      ],
+      "age": 3
+    },
+    {
+      "name": "studio",
+      "players": [
+        3,
+        5
+      ],
+      "age": 3
+    },
+    {
+      "name": "gilda_dei_lavoratori",
+      "players": [
+        3
+      ],
+      "age": 3
+    },
+    {
+      "name": "gilda_degli_artigiani",
+      "players": [
+        3
+      ],
+      "age": 3
+    },
+    {
+      "name": "gilda_dei_mercanti",
+      "players": [
+        3
+      ],
+      "age": 3
+    },
+    {
+      "name": "gilda_dei_filosofi",
+      "players": [
+        3
+      ],
+      "age": 3
+    },
+    {
+      "name": "gilda_delle_spie",
+      "players": [
+        3
+      ],
+      "age": 3
+    },
+    {
+      "name": "gilda_degli_arredatori",
+      "players": [
+        3
+      ],
+      "age": 3
+    },
+    {
+      "name": "gilda_degli_armatori",
+      "players": [
+        3
+      ],
+      "age": 3
+    },
+    {
+      "name": "gilda_degli_scienziati",
+      "players": [
+        3
+      ],
+      "age": 3
+    },
+    {
+      "name": "gilda_dei_magistrati",
+      "players": [
+        3
+      ],
+      "age": 3
+    },
+    {
+      "name": "gilda_dei_costruttori",
+      "players": [
+        3
+      ],
+      "age": 3
+    },
+    {
+      "name": "palestra_gladatoria",
+      "players": [
+        5,
+        7
+      ],
+      "age": 3
+    },
+    {
+      "name": "castra",
+      "players": [
+        4,
+        7
+      ],
+      "age": 3
+    }
+  ]
+}

@@ -18,7 +18,7 @@ export class EffectResolver {
      * Get all immediate effects from a card.
      */
     static getImmediateEffects(card: CardData): CardEffect[] {
-        return (card.effects as CardEffect[]).filter(
+        return (card.effects as unknown as CardEffect[]).filter(
             (e) => e.type === "IMMEDIATE" || e.type === "PERSISTENT"
         );
     }
@@ -27,7 +27,7 @@ export class EffectResolver {
      * Get all end-game scoring effects from a card.
      */
     static getEndGameEffects(card: CardData): CardEffect[] {
-        return (card.effects as CardEffect[]).filter(
+        return (card.effects as unknown as CardEffect[]).filter(
             (e) => e.type === "END_GAME" && e.timing === "ON_GAME_END"
         );
     }

@@ -1,14 +1,13 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card } from './Card';
 import { useGameStore } from '@/stores/gameStore';
-import type { ActionType, CardColor } from '@7wonders/shared';
+import type { ActionType } from '@7wonders/shared';
 
 interface CardHandProps {
     cards: Array<{
         id: string;
         name?: string;
         epoch?: number;
-        color?: CardColor;
     }>;
     onSelectCard: (cardId: string, action: ActionType) => void;
     disabled?: boolean;
@@ -46,59 +45,75 @@ export function CardHand({ cards, onSelectCard, disabled = false }: CardHandProp
                     >
                         <button
                             id="btn-build"
-                            className="btn-success flex items-center gap-2 text-sm"
+                            className="px-5 py-2 rounded-lg font-bold text-sm text-white shadow-lg transition-all hover:scale-105"
+                            style={{
+                                background: 'linear-gradient(135deg, #2563eb, #1d4ed8)',
+                                boxShadow: '0 4px 15px rgba(37, 99, 235, 0.4)',
+                            }}
                             onClick={() => handleAction('BUILD')}
                         >
-                            <span>🏗️</span>
-                            <span>Build</span>
+                            🏗️ Build
                         </button>
                         <button
                             id="btn-wonder"
-                            className="btn-primary flex items-center gap-2 text-sm"
+                            className="px-5 py-2 rounded-lg font-bold text-sm text-white shadow-lg transition-all hover:scale-105"
+                            style={{
+                                background: 'linear-gradient(135deg, #D4A574, #CD7F32)',
+                                boxShadow: '0 4px 15px rgba(212, 165, 116, 0.4)',
+                            }}
                             onClick={() => handleAction('WONDER')}
                         >
-                            <span>🏛️</span>
-                            <span>Wonder</span>
+                            🏛️ Wonder
                         </button>
                         <button
                             id="btn-sell"
-                            className="btn-danger flex items-center gap-2 text-sm"
+                            className="px-5 py-2 rounded-lg font-bold text-sm text-white shadow-lg transition-all hover:scale-105"
+                            style={{
+                                background: 'linear-gradient(135deg, #dc2626, #b91c1c)',
+                                boxShadow: '0 4px 15px rgba(220, 38, 38, 0.4)',
+                            }}
                             onClick={() => handleAction('SELL')}
                         >
-                            <span>💰</span>
-                            <span>Sell (3 coins)</span>
+                            💰 Sell (3 coins)
                         </button>
                     </motion.div>
                 )}
             </AnimatePresence>
 
             {/* Card fan */}
-            <div className="glass-panel rounded-b-none border-b-0 px-4 py-4">
-                <div className="flex justify-center items-end gap-2 max-w-4xl mx-auto">
+            <div
+                className="px-4 py-3 border-t"
+                style={{
+                    background: 'linear-gradient(to top, rgba(15,15,35,0.97), rgba(26,26,46,0.92))',
+                    borderColor: 'rgba(212, 165, 116, 0.2)',
+                    backdropFilter: 'blur(12px)',
+                }}
+            >
+                <div className="flex justify-center items-end gap-1 max-w-5xl mx-auto" style={{ minHeight: '200px' }}>
                     <AnimatePresence mode="popLayout">
                         {cards.map((card, index) => {
                             // Fan-out rotation
                             const centerIndex = (cards.length - 1) / 2;
-                            const rotation = (index - centerIndex) * 3;
-                            const yOffset = Math.abs(index - centerIndex) * 4;
+                            const rotation = (index - centerIndex) * 4;
+                            const yOffset = Math.abs(index - centerIndex) * 6;
 
                             return (
                                 <motion.div
-                                    key={card.id}
+                                    key={card.id + '-' + index}
                                     style={{
                                         rotate: rotation,
                                         y: yOffset,
+                                        marginLeft: index > 0 ? '-15px' : '0',
                                     }}
-                                    initial={{ opacity: 0, y: 50, scale: 0.8 }}
+                                    initial={{ opacity: 0, y: 60, scale: 0.7 }}
                                     animate={{ opacity: 1, y: yOffset, scale: 1 }}
-                                    exit={{ opacity: 0, y: -50, scale: 0.8 }}
-                                    transition={{ delay: index * 0.05, duration: 0.3 }}
+                                    exit={{ opacity: 0, y: -60, scale: 0.7 }}
+                                    transition={{ delay: index * 0.06, duration: 0.35 }}
                                 >
                                     <Card
                                         cardId={card.id}
                                         name={card.name}
                                         epoch={card.epoch}
-                                        color={card.color}
                                         isSelected={selectedCardId === card.id}
                                         isDisabled={disabled}
                                         onClick={() => handleCardClick(card.id)}
@@ -110,7 +125,7 @@ export function CardHand({ cards, onSelectCard, disabled = false }: CardHandProp
                 </div>
 
                 {cards.length === 0 && (
-                    <div className="text-center py-6 text-white/40 text-sm">
+                    <div className="text-center py-8 text-white/30 text-sm italic">
                         Waiting for cards...
                     </div>
                 )}

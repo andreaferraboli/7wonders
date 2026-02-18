@@ -51,6 +51,7 @@ export function useColyseus() {
     const [gameState, setGameState] = useState<ClientGameState | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [isConnected, setIsConnected] = useState(false);
+    const [roomId, setRoomId] = useState<string | null>(null);
     const [turnProgress, setTurnProgress] = useState<TurnProgress | null>(null);
     const [sessionId, setSessionId] = useState<string | null>(null);
     const [epochEvent, setEpochEvent] = useState<{ epoch: number; direction: string } | null>(null);
@@ -58,49 +59,63 @@ export function useColyseus() {
     const [finalScores, setFinalScores] = useState<unknown[] | null>(null);
 
     // Convert Colyseus schema to plain object
-    const schemaToState = useCallback((state: Record<string, unknown>): ClientGameState => {
-        const playersMap = new Map<string, ClientPlayer>();
-        const players = state.players as Map<string, Record<string, unknown>>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const schemaToState = useCallback((state: any): ClientGameState => {
+        // Colyseus Schema objects need toJSON() to get plain properties
+        const json = typeof state.toJSON === 'function' ? state.toJSON() : state;
 
-        if (players?.forEach) {
-            players.forEach((player: Record<string, unknown>, key: string) => {
+        const playersMap = new Map<string, ClientPlayer>();
+
+        // Players can be a Map, object, or MapSchema
+        const playersSource = state.players;
+        if (playersSource) {
+            const iteratePlayers = (player: any, key: string) => {
+                const p = typeof player.toJSON === 'function' ? player.toJSON() : player;
                 playersMap.set(key, {
-                    sessionId: player.sessionId as string,
-                    userId: player.userId as string,
-                    position: player.position as number,
-                    wonderId: player.wonderId as string,
-                    wonderSide: player.wonderSide as string,
-                    wonderStagesBuilt: player.wonderStagesBuilt as number,
-                    cityCards: Array.from(player.cityCards as Iterable<string>),
-                    coins: player.coins as number,
-                    militaryPower: player.militaryPower as number,
-                    militaryTokens: Array.from(player.militaryTokens as Iterable<string>),
-                    scienceCompass: player.scienceCompass as number,
-                    scienceGear: player.scienceGear as number,
-                    scienceTablet: player.scienceTablet as number,
-                    hand: Array.from(player.hand as Iterable<string>),
-                    selectedCard: player.selectedCard as string,
-                    selectedAction: player.selectedAction as string,
-                    isReady: player.isReady as boolean,
-                    isAI: player.isAI as boolean,
+                    sessionId: p.sessionId ?? '',
+                    userId: p.userId ?? '',
+                    position: p.position ?? 0,
+                    wonderId: p.wonderId ?? '',
+                    wonderSide: p.wonderSide ?? 'DAY',
+                    wonderStagesBuilt: p.wonderStagesBuilt ?? 0,
+                    cityCards: Array.isArray(p.cityCards) ? p.cityCards : [],
+                    coins: p.coins ?? 3,
+                    militaryPower: p.militaryPower ?? 0,
+                    militaryTokens: Array.isArray(p.militaryTokens) ? p.militaryTokens : [],
+                    scienceCompass: p.scienceCompass ?? 0,
+                    scienceGear: p.scienceGear ?? 0,
+                    scienceTablet: p.scienceTablet ?? 0,
+                    hand: Array.isArray(p.hand) ? p.hand : [],
+                    selectedCard: p.selectedCard ?? '',
+                    selectedAction: p.selectedAction ?? '',
+                    isReady: p.isReady ?? false,
+                    isAI: p.isAI ?? false,
                 });
-            });
+            };
+
+            if (typeof playersSource.forEach === 'function') {
+                playersSource.forEach(iteratePlayers);
+            } else if (typeof playersSource === 'object') {
+                Object.entries(playersSource).forEach(([key, val]) => iteratePlayers(val, key));
+            }
         }
 
         return {
-            gameId: state.gameId as string,
-            phase: state.phase as string,
-            epoch: state.epoch as number,
-            turn: state.turn as number,
-            direction: state.direction as string,
+            gameId: json.gameId ?? '',
+            phase: json.phase ?? 'LOBBY',
+            epoch: json.epoch ?? 1,
+            turn: json.turn ?? 0,
+            direction: json.direction ?? 'LEFT',
             players: playersMap,
-            seed: state.seed as string,
+            seed: json.seed ?? '',
         };
     }, []);
 
     const setupRoomListeners = useCallback((room: Room) => {
         room.onStateChange((state) => {
-            setGameState(schemaToState(state as unknown as Record<string, unknown>));
+            const gs = schemaToState(state);
+            console.log('[Colyseus] onStateChange - phase:', gs.phase, 'epoch:', gs.epoch, 'turn:', gs.turn, 'players:', gs.players.size);
+            setGameState(gs);
         });
 
         room.onMessage('error', (message: ServerError) => {
@@ -120,6 +135,8 @@ export function useColyseus() {
         room.onMessage('epoch_start', (data: { epoch: number; direction: string }) => {
             console.log('Epoch started:', data);
             setEpochEvent(data);
+            // Force re-read state in case onStateChange didn't fire
+            setGameState(schemaToState(room.state));
         });
 
         room.onMessage('war_resolved', (data: { epoch: number; results: unknown[] }) => {
@@ -134,11 +151,14 @@ export function useColyseus() {
 
         room.onMessage('player_joined', (data) => {
             console.log('Player joined:', data);
+            // Force re-read state to update player list in lobby
+            setGameState(schemaToState(room.state));
         });
 
         room.onLeave((code) => {
             console.log('Left room with code:', code);
             setIsConnected(false);
+            setRoomId(null);
             roomRef.current = null;
         });
     }, [schemaToState]);
@@ -150,24 +170,32 @@ export function useColyseus() {
     }) => {
         try {
             setError(null);
-            const room = await colyseusClient.create('7wonders', {
+            const roomConfig = {
                 config: {
                     playerCount: config?.playerCount ?? 3,
                     expansions: config?.expansions ?? [],
                     allowAI: config?.allowAI ?? true,
                 },
-            });
+            };
+            console.log('Creating room with config:', roomConfig);
+            const room = await colyseusClient.create('7wonders', roomConfig);
             roomRef.current = room;
             setSessionId(room.sessionId);
+            setRoomId(room.id);
             setIsConnected(true);
             setupRoomListeners(room);
+            // Read initial state immediately (may already be DRAFT if AI filled)
+            setGameState(schemaToState(room.state));
+            const initialState = schemaToState(room.state);
+            console.log('Room created:', room.id, 'Session:', room.sessionId, 'Phase:', initialState.phase);
             return room.id;
         } catch (e: unknown) {
             const msg = e instanceof Error ? e.message : 'Failed to create room';
+            console.error('Create room error:', e);
             setError(msg);
             return null;
         }
-    }, [setupRoomListeners]);
+    }, [setupRoomListeners, schemaToState]);
 
     const joinRoom = useCallback(async (roomId: string) => {
         try {
@@ -177,15 +205,18 @@ export function useColyseus() {
             });
             roomRef.current = room;
             setSessionId(room.sessionId);
+            setRoomId(room.id);
             setIsConnected(true);
             setupRoomListeners(room);
+            // Read initial state immediately
+            setGameState(schemaToState(room.state));
             return true;
         } catch (e: unknown) {
             const msg = e instanceof Error ? e.message : 'Failed to join room';
             setError(msg);
             return false;
         }
-    }, [setupRoomListeners]);
+    }, [setupRoomListeners, schemaToState]);
 
     const selectCard = useCallback((cardId: string, action: ActionType) => {
         if (!roomRef.current) return;
@@ -196,6 +227,15 @@ export function useColyseus() {
         });
     }, []);
 
+    const startGame = useCallback(() => {
+        if (!roomRef.current) {
+            console.error('[startGame] No room ref!');
+            return;
+        }
+        console.log('[startGame] Sending start_game to room', roomRef.current.id);
+        roomRef.current.send('start_game');
+    }, []);
+
     const leaveRoom = useCallback(() => {
         if (roomRef.current) {
             roomRef.current.leave();
@@ -203,6 +243,7 @@ export function useColyseus() {
             setIsConnected(false);
             setGameState(null);
             setSessionId(null);
+            setRoomId(null);
         }
     }, []);
 
@@ -217,6 +258,7 @@ export function useColyseus() {
 
     return {
         room: roomRef.current,
+        roomId,
         gameState,
         error,
         isConnected,
@@ -228,6 +270,7 @@ export function useColyseus() {
         createRoom,
         joinRoom,
         selectCard,
+        startGame,
         leaveRoom,
         clearError: () => setError(null),
         dismissEpoch: () => setEpochEvent(null),

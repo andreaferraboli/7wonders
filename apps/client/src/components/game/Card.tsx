@@ -1,90 +1,123 @@
 import { motion } from 'framer-motion';
-import type { CardColor } from '@7wonders/shared';
 
 interface CardProps {
     cardId: string;
     name?: string;
     epoch?: number;
-    color?: CardColor;
     isSelected?: boolean;
     isDisabled?: boolean;
     onClick?: () => void;
     onHover?: () => void;
     onHoverEnd?: () => void;
+    compact?: boolean;
 }
 
-const COLOR_STYLES: Record<CardColor, { bg: string; border: string; glow: string }> = {
-    BROWN: {
-        bg: 'bg-gradient-to-b from-amber-800 to-amber-900',
-        border: 'border-amber-600',
-        glow: 'shadow-amber-700/50',
-    },
-    GREY: {
-        bg: 'bg-gradient-to-b from-slate-500 to-slate-700',
-        border: 'border-slate-400',
-        glow: 'shadow-slate-500/50',
-    },
-    BLUE: {
-        bg: 'bg-gradient-to-b from-blue-500 to-blue-700',
-        border: 'border-blue-400',
-        glow: 'shadow-blue-500/50',
-    },
-    YELLOW: {
-        bg: 'bg-gradient-to-b from-yellow-500 to-amber-600',
-        border: 'border-yellow-400',
-        glow: 'shadow-yellow-500/50',
-    },
-    RED: {
-        bg: 'bg-gradient-to-b from-red-600 to-red-800',
-        border: 'border-red-500',
-        glow: 'shadow-red-600/50',
-    },
-    GREEN: {
-        bg: 'bg-gradient-to-b from-emerald-600 to-emerald-800',
-        border: 'border-emerald-500',
-        glow: 'shadow-emerald-600/50',
-    },
-    PURPLE: {
-        bg: 'bg-gradient-to-b from-purple-600 to-purple-800',
-        border: 'border-purple-500',
-        glow: 'shadow-purple-600/50',
-    },
-    BLACK: {
-        bg: 'bg-gradient-to-b from-gray-800 to-gray-950',
-        border: 'border-gray-600',
-        glow: 'shadow-gray-700/50',
-    },
-};
+// Import all card images dynamically
+const cardImages = import.meta.glob('@/assets/cards/*.png', { eager: true, as: 'url' });
 
-const EPOCH_ICONS = ['Ⅰ', 'Ⅱ', 'Ⅲ'] as const;
+function getCardImageUrl(cardId: string): string | undefined {
+    // Remove duplicate suffixes (e.g. "taverna" appears multiple times)
+    const baseName = cardId.replace(/_\d+$/, '');
+
+    // Try exact match first
+    const exactKey = Object.keys(cardImages).find(k => k.includes(`/${cardId}.png`));
+    if (exactKey) return cardImages[exactKey];
+
+    // Try base name match
+    const baseKey = Object.keys(cardImages).find(k => k.includes(`/${baseName}.png`));
+    if (baseKey) return cardImages[baseKey];
+
+    return undefined;
+}
+
+// Determine card color from Italian name
+function getCardColor(cardId: string): string {
+    // Brown - raw materials
+    const brown = ['cantiere_di_abbattimento', 'cava_pietra', 'bacino_argilla', 'filone_minerario', 'vivaio', 'scavi', 'fossa_argilla', 'deposito_legname', 'giacimento', 'miniera', 'segheria', 'tagliapietre', 'mattonificio', 'fonderia'];
+    // Grey - manufactured goods
+    const grey = ['vetreria', 'stamperia', 'filanda'];
+    // Blue - civilian
+    const blue = ['pozzo', 'bagni', 'altare', 'teatro', 'statua', 'acquedotto', 'tempio', 'tribunale', 'pantheon', 'giardini', 'municipio', 'palazzo', 'senato'];
+    // Yellow - commercial
+    const yellow = ['taverna', 'mercato', 'stazione_commerciale_ovest', 'stazione_commerciale_est', 'caravanserraglio', 'foro', 'vigneto', 'bazar', 'faro', 'porto', 'camera_di_commercio', 'arena'];
+    // Red - military
+    const red = ['palizzata', 'caserma', 'torre_di_guardia', 'scuderie', 'campo_di_tiro_con_l_arco', 'mura', 'zona_di_addestramento', 'arsenale', 'fortificazioni', 'opificio_d_assedio', 'circo', 'palestra_gladatoria', 'castra'];
+    // Green - science
+    const green = ['farmacia', 'opificio', 'scrittorio', 'ambulatorio', 'laboratorio', 'biblioteca', 'scuola', 'loggia', 'osservatorio', 'accademia', 'universita', 'studio'];
+    // Purple - guilds
+    const purple = ['gilda_dei_lavoratori', 'gilda_degli_artigiani', 'gilda_dei_mercanti', 'gilda_dei_filosofi', 'gilda_delle_spie', 'gilda_degli_arredatori', 'gilda_degli_armatori', 'gilda_degli_scienziati', 'gilda_dei_magistrati', 'gilda_dei_costruttori'];
+
+    if (brown.includes(cardId)) return '#8B4513';
+    if (grey.includes(cardId)) return '#6B7280';
+    if (blue.includes(cardId)) return '#2563EB';
+    if (yellow.includes(cardId)) return '#F59E0B';
+    if (red.includes(cardId)) return '#DC2626';
+    if (green.includes(cardId)) return '#16A34A';
+    if (purple.includes(cardId)) return '#7C3AED';
+    return '#374151';
+}
+
+function getCardBorderColor(cardId: string): string {
+    const color = getCardColor(cardId);
+    switch (color) {
+        case '#8B4513': return '#D4A574';
+        case '#6B7280': return '#9CA3AF';
+        case '#2563EB': return '#60A5FA';
+        case '#F59E0B': return '#FCD34D';
+        case '#DC2626': return '#F87171';
+        case '#16A34A': return '#34D399';
+        case '#7C3AED': return '#A78BFA';
+        default: return '#6B7280';
+    }
+}
 
 export function Card({
     cardId,
-    name,
-    epoch,
-    color = 'BLUE',
     isSelected = false,
     isDisabled = false,
     onClick,
     onHover,
     onHoverEnd,
+    compact = false,
 }: CardProps) {
-    const style = COLOR_STYLES[color];
-    const displayName = name ?? cardId.replace(/_/g, ' ').replace(/\d+P$/i, '');
+    const imageUrl = getCardImageUrl(cardId);
+    const borderColor = getCardBorderColor(cardId);
+
+    if (compact) {
+        // Small built-card representation
+        return (
+            <div
+                className="w-6 h-8 rounded overflow-hidden border cursor-default hover:scale-125 hover:z-10 transition-transform"
+                style={{ borderColor: borderColor, borderWidth: '1.5px' }}
+                title={cardId.replace(/_/g, ' ')}
+            >
+                {imageUrl ? (
+                    <img src={imageUrl} alt={cardId} className="w-full h-full object-cover object-top" />
+                ) : (
+                    <div className="w-full h-full" style={{ backgroundColor: getCardColor(cardId) }} />
+                )}
+            </div>
+        );
+    }
 
     return (
         <motion.div
             id={`card-${cardId}`}
             className={`
-        relative w-28 h-40 rounded-xl cursor-pointer select-none
-        border-2 overflow-hidden
-        ${style.bg} ${style.border}
-        ${isSelected ? 'ring-3 ring-ancient-gold ring-offset-2 ring-offset-dark-marble' : ''}
-        ${isDisabled ? 'opacity-50 cursor-not-allowed' : ''}
-        card-shadow
-        transition-shadow duration-200
-      `}
-            whileHover={!isDisabled ? { scale: 1.08, y: -12, zIndex: 10 } : {}}
+                relative rounded-xl cursor-pointer select-none overflow-hidden
+                ${isSelected ? 'ring-3 ring-yellow-400 ring-offset-2 ring-offset-slate-900' : ''}
+                ${isDisabled ? 'opacity-50 cursor-not-allowed' : ''}
+                transition-shadow duration-200
+            `}
+            style={{
+                width: '120px',
+                height: '185px',
+                border: `2px solid ${isSelected ? '#FFD700' : borderColor}`,
+                boxShadow: isSelected
+                    ? `0 0 20px rgba(255, 215, 0, 0.5), inset 0 0 10px rgba(255, 215, 0, 0.1)`
+                    : `0 4px 12px rgba(0,0,0,0.4)`,
+            }}
+            whileHover={!isDisabled ? { scale: 1.1, y: -15, zIndex: 20 } : {}}
             whileTap={!isDisabled ? { scale: 0.96 } : {}}
             onClick={!isDisabled ? onClick : undefined}
             onHoverStart={onHover}
@@ -92,68 +125,40 @@ export function Card({
             layout
             layoutId={cardId}
         >
-            {/* Card inner glow */}
-            <div className="absolute inset-0 bg-gradient-to-b from-white/15 to-transparent pointer-events-none" />
-
-            {/* Header band */}
-            <div className="relative px-2.5 pt-2 pb-1">
-                <h3 className="font-display text-[10px] font-semibold text-white leading-tight truncate drop-shadow-md">
-                    {displayName}
-                </h3>
-            </div>
-
-            {/* Age indicator */}
-            {epoch && (
-                <div className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center">
-                    <span className="text-[9px] font-bold text-ancient-gold">
-                        {EPOCH_ICONS[epoch - 1]}
+            {imageUrl ? (
+                <img
+                    src={imageUrl}
+                    alt={cardId.replace(/_/g, ' ')}
+                    className="w-full h-full object-cover"
+                    draggable={false}
+                />
+            ) : (
+                <div
+                    className="w-full h-full flex items-center justify-center p-2"
+                    style={{ backgroundColor: getCardColor(cardId) }}
+                >
+                    <span className="text-white text-xs text-center font-semibold drop-shadow-md leading-tight">
+                        {cardId.replace(/_/g, ' ')}
                     </span>
                 </div>
             )}
 
-            {/* Center area - card type icon */}
-            <div className="flex-1 flex items-center justify-center mt-3">
-                <div className="w-10 h-10 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center">
-                    <span className="text-lg">{getColorEmoji(color)}</span>
-                </div>
-            </div>
-
-            {/* Bottom bar */}
-            <div className="absolute bottom-0 left-0 right-0 px-2.5 py-1.5 bg-black/30 backdrop-blur-sm">
-                <div className="flex items-center justify-between">
-                    <span className="text-[8px] text-white/70 font-medium uppercase tracking-wider">
-                        {color}
-                    </span>
-                    {isSelected && (
-                        <span className="text-[8px] text-ancient-gold font-bold">✓ SELECTED</span>
-                    )}
-                </div>
-            </div>
-
             {/* Selection overlay */}
             {isSelected && (
                 <motion.div
-                    className="absolute inset-0 border-2 border-ancient-gold rounded-xl pointer-events-none"
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                        border: '3px solid #FFD700',
+                        borderRadius: '0.75rem',
+                        backgroundColor: 'rgba(255, 215, 0, 0.08)',
+                    }}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                >
-                    <div className="absolute inset-0 bg-ancient-gold/10" />
-                </motion.div>
+                />
             )}
         </motion.div>
     );
 }
 
-function getColorEmoji(color: CardColor): string {
-    switch (color) {
-        case 'BROWN': return '🪵';
-        case 'GREY': return '⚙️';
-        case 'BLUE': return '🏛️';
-        case 'YELLOW': return '💰';
-        case 'RED': return '⚔️';
-        case 'GREEN': return '🔬';
-        case 'PURPLE': return '👥';
-        case 'BLACK': return '🌑';
-    }
-}
+export { getCardColor };

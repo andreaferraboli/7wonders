@@ -1,502 +1,712 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useColyseus } from './hooks/useColyseus';
 import type { ClientPlayer } from './hooks/useColyseus';
 import { CardHand } from './components/game/CardHand';
 import { WonderBoard } from './components/game/WonderBoard';
 import { PlayerPanel } from './components/game/PlayerPanel';
-import { ResourcePanel } from './components/game/ResourcePanel';
 import { NeighborPanel } from './components/game/NeighborPanel';
-import { GameResults } from './components/game/GameResults';
-import { Scoreboard } from './components/ui/Scoreboard';
+import { BuiltCardsArea } from './components/game/BuiltCardsArea';
 import { EpochTransition } from './components/ui/EpochTransition';
-import { MilitaryResults } from './components/ui/MilitaryResults';
-import { useGameStore } from './stores/gameStore';
 import type { ActionType } from '@7wonders/shared';
-
-// Helper: count built cards by color (uses card ID prefix convention)
-function countCardsByColor(cityCards: string[]): Record<string, number> {
-    const counts: Record<string, number> = {};
-    // We don't have card data on client, so approximate by ID patterns
-    for (const card of cityCards) {
-        // Try to get color from common 7 Wonders card naming
-        let color = 'BLUE';
-        const upper = card.toUpperCase();
-        if (upper.includes('LUMBER') || upper.includes('STONE') || upper.includes('CLAY') || upper.includes('TIMBER') || upper.includes('QUARRY') || upper.includes('BRICKYARD') || upper.includes('SAWMILL') || upper.includes('MINE') || upper.includes('PRESS') || upper.includes('EXCAVATION') || upper.includes('FOREST') || upper.includes('TREE')) color = 'BROWN';
-        else if (upper.includes('GLASS') || upper.includes('LOOM') || upper.includes('PAPYRUS') || upper.includes('PRESS')) color = 'GREY';
-        else if (upper.includes('GUARD') || upper.includes('BARRACKS') || upper.includes('WALL') || upper.includes('TRAINING') || upper.includes('STABLES') || upper.includes('RANGE') || upper.includes('FORTIF') || upper.includes('ARSENAL') || upper.includes('SIEGE') || upper.includes('CIRCUS') || upper.includes('STOCKADE') || upper.includes('TOWER')) color = 'RED';
-        else if (upper.includes('LODGE') || upper.includes('LIBRARY') || upper.includes('OBSERVATORY') || upper.includes('ACADEMY') || upper.includes('UNIVERSITY') || upper.includes('SCHOOL') || upper.includes('LABORATORY') || upper.includes('DISPENSARY') || upper.includes('STUDY') || upper.includes('WORKSHOP') || upper.includes('SCRIPTORIUM') || upper.includes('APOTHECARY')) color = 'GREEN';
-        else if (upper.includes('MARKET') || upper.includes('TAVERN') || upper.includes('EAST') || upper.includes('WEST') || upper.includes('HAVEN') || upper.includes('LIGHTHOUSE') || upper.includes('ARENA') || upper.includes('CARAVANSERY') || upper.includes('FORUM') || upper.includes('VINEYARD') || upper.includes('CHAMBER')) color = 'YELLOW';
-        else if (upper.includes('GUILD') || upper.includes('WORKERS') || upper.includes('CRAFTSMEN') || upper.includes('TRADERS') || upper.includes('MAGISTRATES') || upper.includes('SCIENTISTS') || upper.includes('SHIPOWNERS') || upper.includes('SPIES') || upper.includes('PHILOSOPHERS') || upper.includes('STRATEGISTS') || upper.includes('BUILDERS')) color = 'PURPLE';
-        counts[color] = (counts[color] ?? 0) + 1;
-    }
-    return counts;
-}
+import { useGameStore } from './stores/gameStore';
 
 function App() {
     const {
-        gameState, sessionId, error, isConnected, turnProgress,
-        epochEvent, warResults, finalScores,
-        createRoom, joinRoom, selectCard, clearError,
-        dismissEpoch, dismissWar, leaveRoom,
+        gameState,
+        error,
+        isConnected,
+        sessionId,
+        roomId,
+        turnProgress,
+        epochEvent,
+        warResults,
+        finalScores,
+        createRoom,
+        joinRoom,
+        selectCard,
+        startGame,
+        leaveRoom,
+        clearError,
+        dismissEpoch,
+        dismissWar,
     } = useColyseus();
 
-    const { currentView, setCurrentView, showScoreboard, setShowScoreboard } = useGameStore();
-    const [roomIdInput, setRoomIdInput] = useState('');
     const [playerCount, setPlayerCount] = useState(3);
+    const [aiPlayers, setAiPlayers] = useState(true);
+    const [joinRoomId, setJoinRoomId] = useState('');
 
-    // Get current player
+    const [showEpochTransition, setShowEpochTransition] = useState(false);
+
+    // Current player
     const currentPlayer = useMemo(() => {
         if (!gameState || !sessionId) return null;
         return gameState.players.get(sessionId) ?? null;
     }, [gameState, sessionId]);
 
+    // Is connected to a room?
+    const isInRoom = !!roomId && isConnected;
+
+    // Phase
+    const phase = gameState?.phase ?? 'LOBBY';
+
+    // Handle epoch events
+    useEffect(() => {
+        if (epochEvent) {
+            setShowEpochTransition(true);
+            const timer = setTimeout(() => {
+                setShowEpochTransition(false);
+                dismissEpoch();
+            }, 2500);
+            return () => clearTimeout(timer);
+        }
+    }, [epochEvent, dismissEpoch]);
+
     // Get neighbors
     const neighbors = useMemo(() => {
-        if (!gameState || !sessionId) return { left: null, right: null };
-        const playerArray = Array.from(gameState.players.values());
-        const myIndex = playerArray.findIndex(p => p.sessionId === sessionId);
-        if (myIndex === -1) return { left: null, right: null };
+        if (!gameState || !currentPlayer) return { left: null, right: null };
+        const players = Array.from(gameState.players.values());
+        const myIndex = players.findIndex((p: { sessionId: string }) => p.sessionId === currentPlayer.sessionId);
+        if (myIndex < 0) return { left: null, right: null };
 
-        const leftIdx = (myIndex - 1 + playerArray.length) % playerArray.length;
-        const rightIdx = (myIndex + 1) % playerArray.length;
-
-        const toNeighborInfo = (p: ClientPlayer) => ({
-            sessionId: p.sessionId,
-            wonderId: p.wonderId,
-            coins: p.coins,
-            militaryPower: p.militaryPower,
-            builtCardsCount: p.cityCards.length,
-            wonderStagesBuilt: p.wonderStagesBuilt,
-            isAI: p.isAI,
-        });
+        const leftIndex = (myIndex - 1 + players.length) % players.length;
+        const rightIndex = (myIndex + 1) % players.length;
 
         return {
-            left: playerArray[leftIdx] ? toNeighborInfo(playerArray[leftIdx]) : null,
-            right: playerArray[rightIdx] ? toNeighborInfo(playerArray[rightIdx]) : null,
+            left: players[leftIndex] ?? null,
+            right: players[rightIndex] ?? null,
         };
-    }, [gameState, sessionId]);
+    }, [gameState, currentPlayer]);
 
-    // Other players (for top/side panels)  
+    // Other players (not self, not neighbors)
     const otherPlayers = useMemo(() => {
-        if (!gameState || !sessionId) return [];
-        const others: Array<{ player: ClientPlayer; position: 'left' | 'right' | 'top' }> = [];
-        const positions: Array<'left' | 'right' | 'top'> = ['left', 'right', 'top'];
-        let posIndex = 0;
+        if (!gameState || !currentPlayer) return [];
+        const players = Array.from(gameState.players.values());
+        const myIndex = players.findIndex((p: { sessionId: string }) => p.sessionId === currentPlayer.sessionId);
+        if (myIndex < 0) return [];
 
-        gameState.players.forEach((player, key) => {
-            if (key !== sessionId && posIndex < positions.length) {
-                others.push({ player, position: positions[posIndex] });
-                posIndex++;
-            }
+        return players.filter((_p: unknown, i: number) => {
+            const leftIndex = (myIndex - 1 + players.length) % players.length;
+            const rightIndex = (myIndex + 1) % players.length;
+            return i !== myIndex && i !== leftIndex && i !== rightIndex;
         });
-        return others;
-    }, [gameState, sessionId]);
+    }, [gameState, currentPlayer]);
 
-    // Build card data for hand
-    const handCards = useMemo(() => {
-        if (!currentPlayer) return [];
-        return currentPlayer.hand.map((cardId) => ({
-            id: cardId,
-            name: cardId.replace(/_/g, ' ').replace(/\d+P$/i, ''),
-        }));
-    }, [currentPlayer]);
-
-    // Card color counts for ResourcePanel
-    const builtCardColors = useMemo(() => {
-        if (!currentPlayer) return {};
-        return countCardsByColor(currentPlayer.cityCards);
-    }, [currentPlayer]);
-
-    const handleCreateRoom = async () => {
-        const roomId = await createRoom({ playerCount, allowAI: true });
-        if (roomId) {
-            setCurrentView('game');
-        }
+    // Handle card action
+    const handleCardAction = (cardId: string, action: ActionType) => {
+        selectCard(cardId, action);
     };
 
-    const handleJoinRoom = async () => {
-        if (!roomIdInput.trim()) return;
-        const success = await joinRoom(roomIdInput.trim());
-        if (success) {
-            setCurrentView('game');
-        }
-    };
+    // ==========================================
+    // SCREEN 1: Home / Create or Join
+    // ==========================================
+    if (!isInRoom) {
+        return (
+            <div
+                className="min-h-screen flex items-center justify-center"
+                style={{
+                    background: 'radial-gradient(ellipse at 30% 30%, #1A1A2E, #0F0F23)',
+                }}
+            >
+                <motion.div
+                    className="w-full max-w-lg p-8 rounded-2xl"
+                    style={{
+                        background: 'linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))',
+                        border: '1px solid rgba(212, 165, 116, 0.3)',
+                        backdropFilter: 'blur(20px)',
+                        boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+                    }}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    {/* Title */}
+                    <div className="text-center mb-8">
+                        <motion.h1
+                            className="text-5xl font-bold mb-2"
+                            style={{
+                                fontFamily: 'Cinzel, Georgia, serif',
+                                background: 'linear-gradient(to right, #D4A574, #FFD700, #CD7F32)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                            }}
+                            initial={{ scale: 0.8 }}
+                            animate={{ scale: 1 }}
+                            transition={{ type: 'spring', stiffness: 200 }}
+                        >
+                            7 Wonders
+                        </motion.h1>
+                        <p className="text-white/40 text-sm">Costruisci la tua civiltà antica</p>
+                    </div>
 
-    const handlePlayAgain = () => {
-        leaveRoom();
-        setCurrentView('lobby');
-    };
+                    {/* Error */}
+                    {error && (
+                        <div
+                            className="mb-4 px-4 py-2 rounded-lg text-sm text-red-300 cursor-pointer"
+                            style={{ background: 'rgba(220, 38, 38, 0.15)', border: '1px solid rgba(220, 38, 38, 0.3)' }}
+                            onClick={clearError}
+                        >
+                            {error}
+                        </div>
+                    )}
 
-    // Auto-switch to game view when game starts
-    if (gameState?.phase === 'DRAFT' && currentView === 'lobby') {
-        setCurrentView('game');
-    }
-    if (gameState?.phase === 'FINISHED' && currentView !== 'results') {
-        setCurrentView('results');
-    }
-
-    return (
-        <div className="min-h-screen bg-marble-texture">
-            {/* Error toast */}
-            <AnimatePresence>
-                {error && (
-                    <motion.div
-                        className="fixed top-4 right-4 z-50 glass-panel p-4 border border-red-500/50 max-w-sm"
-                        initial={{ opacity: 0, x: 50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: 50 }}
-                    >
-                        <div className="flex items-start gap-3">
-                            <span className="text-red-400">⚠️</span>
-                            <div className="flex-1">
-                                <p className="text-sm text-red-300">{error}</p>
-                                <button
-                                    className="text-xs text-white/50 hover:text-white mt-1"
-                                    onClick={clearError}
-                                >
-                                    Dismiss
-                                </button>
+                    {/* Create Game */}
+                    <div className="space-y-4 mb-6">
+                        <div>
+                            <label className="block text-xs text-white/50 mb-1 uppercase tracking-wider">Giocatori</label>
+                            <div className="flex gap-2">
+                                {[3, 4, 5, 6, 7].map(n => (
+                                    <button
+                                        key={n}
+                                        className="flex-1 py-2 rounded-lg font-bold text-sm transition-all"
+                                        style={{
+                                            background: playerCount === n
+                                                ? 'linear-gradient(135deg, #D4A574, #CD7F32)'
+                                                : 'rgba(255,255,255,0.06)',
+                                            color: playerCount === n ? '#1A1A2E' : 'rgba(255,255,255,0.5)',
+                                            border: playerCount === n
+                                                ? '1px solid #D4A574'
+                                                : '1px solid rgba(255,255,255,0.1)',
+                                        }}
+                                        onClick={() => setPlayerCount(n)}
+                                    >
+                                        {n}
+                                    </button>
+                                ))}
                             </div>
                         </div>
+
+                        <div className="flex items-center gap-3">
+                            <input
+                                id="input-ai-toggle"
+                                type="checkbox"
+                                className="w-4 h-4 accent-amber-500"
+                                checked={aiPlayers}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAiPlayers(e.target.checked)}
+                            />
+                            <label className="text-sm text-white/60">Completa con AI (inizia subito)</label>
+                        </div>
+
+                        <button
+                            id="btn-create-room"
+                            className="w-full py-3 rounded-lg font-bold text-lg transition-all hover:scale-[1.02] active:scale-[0.98]"
+                            style={{
+                                fontFamily: 'Cinzel, Georgia, serif',
+                                background: 'linear-gradient(135deg, #D4A574, #CD7F32)',
+                                color: '#1A1A2E',
+                                boxShadow: '0 4px 20px rgba(212, 165, 116, 0.3)',
+                            }}
+                            onClick={() => createRoom({
+                                playerCount,
+                                expansions: [],
+                                allowAI: aiPlayers,
+                            })}
+                        >
+                            {aiPlayers ? 'Gioca Subito' : 'Crea Lobby'}
+                        </button>
+                    </div>
+
+                    {/* Divider */}
+                    <div className="flex items-center gap-4 my-6">
+                        <div className="flex-1 h-px bg-white/10" />
+                        <span className="text-xs text-white/30 uppercase">oppure unisciti</span>
+                        <div className="flex-1 h-px bg-white/10" />
+                    </div>
+
+                    {/* Join Game */}
+                    <div className="flex gap-2">
+                        <input
+                            id="input-room-id"
+                            type="text"
+                            className="flex-1 px-4 py-3 rounded-lg text-white text-sm outline-none focus:ring-1 focus:ring-amber-500/50"
+                            style={{
+                                background: 'rgba(255,255,255,0.06)',
+                                border: '1px solid rgba(255,255,255,0.1)',
+                            }}
+                            placeholder="ID Stanza..."
+                            value={joinRoomId}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setJoinRoomId(e.target.value)}
+                        />
+                        <button
+                            id="btn-join-room"
+                            className="px-6 py-3 rounded-lg font-medium text-sm transition-all hover:scale-[1.02]"
+                            style={{
+                                background: 'rgba(255,255,255,0.08)',
+                                border: '1px solid rgba(212, 165, 116, 0.3)',
+                                color: '#D4A574',
+                            }}
+                            onClick={() => joinRoom(joinRoomId)}
+                        >
+                            Unisciti
+                        </button>
+                    </div>
+                </motion.div>
+            </div>
+        );
+    }
+
+    // ==========================================
+    // SCREEN 2: Lobby / Waiting for players
+    // ==========================================
+    if (phase === 'LOBBY') {
+        const humanPlayers = gameState
+            ? Array.from(gameState.players.values()).filter((p: { isAI: boolean }) => !p.isAI)
+            : [];
+        const expectedPlayers = playerCount;
+
+        return (
+            <div
+                className="min-h-screen flex items-center justify-center"
+                style={{
+                    background: 'radial-gradient(ellipse at 30% 30%, #1A1A2E, #0F0F23)',
+                }}
+            >
+                <motion.div
+                    className="w-full max-w-md p-8 rounded-2xl"
+                    style={{
+                        background: 'linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))',
+                        border: '1px solid rgba(212, 165, 116, 0.3)',
+                        backdropFilter: 'blur(20px)',
+                        boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+                    }}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    <div className="text-center mb-6">
+                        <h2
+                            className="text-3xl font-bold mb-1"
+                            style={{
+                                fontFamily: 'Cinzel, Georgia, serif',
+                                background: 'linear-gradient(to right, #D4A574, #FFD700, #CD7F32)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                            }}
+                        >
+                            Lobby
+                        </h2>
+                        <p className="text-white/40 text-sm">In attesa di giocatori...</p>
+                    </div>
+
+                    {/* Room ID */}
+                    <div
+                        className="mb-6 px-4 py-3 rounded-lg text-center"
+                        style={{
+                            background: 'rgba(255,255,255,0.04)',
+                            border: '1px solid rgba(255,255,255,0.1)',
+                        }}
+                    >
+                        <div className="text-[10px] text-white/30 uppercase tracking-wider mb-1">ID Stanza</div>
+                        <div className="text-lg font-mono text-amber-400 select-all">{roomId}</div>
+                    </div>
+
+                    {/* Player list */}
+                    <div className="space-y-2 mb-6">
+                        <div className="text-xs text-white/40 uppercase tracking-wider mb-2">
+                            Giocatori ({humanPlayers.length}/{expectedPlayers})
+                        </div>
+                        {humanPlayers.map((p: { sessionId: string }, i: number) => (
+                            <div
+                                key={p.sessionId}
+                                className="flex items-center gap-3 px-3 py-2 rounded-lg"
+                                style={{
+                                    background: 'rgba(255,255,255,0.04)',
+                                    border: '1px solid rgba(255,255,255,0.06)',
+                                }}
+                            >
+                                <div
+                                    className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold"
+                                    style={{
+                                        background: 'linear-gradient(135deg, #D4A574, #CD7F32)',
+                                        color: '#1A1A2E',
+                                    }}
+                                >
+                                    {i + 1}
+                                </div>
+                                <span className="text-white/70 text-sm">
+                                    {p.sessionId === sessionId ? 'Tu (Host)' : `Giocatore ${i + 1}`}
+                                </span>
+                                {p.sessionId === sessionId && (
+                                    <span className="ml-auto text-[10px] text-emerald-400/60 uppercase">host</span>
+                                )}
+                            </div>
+                        ))}
+
+                        {/* Empty slots */}
+                        {Array.from({ length: expectedPlayers - humanPlayers.length }).map((_, i) => (
+                            <div
+                                key={`empty-${i}`}
+                                className="flex items-center gap-3 px-3 py-2 rounded-lg"
+                                style={{
+                                    background: 'rgba(255,255,255,0.02)',
+                                    border: '1px dashed rgba(255,255,255,0.08)',
+                                }}
+                            >
+                                <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm"
+                                    style={{ border: '1px dashed rgba(255,255,255,0.15)' }}
+                                >
+                                    <span className="text-white/20">?</span>
+                                </div>
+                                <span className="text-white/20 text-sm">In attesa...</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Pulsante animato attesa */}
+                    <div className="flex items-center justify-center gap-2 mb-4">
+                        <motion.div
+                            className="w-2 h-2 rounded-full"
+                            style={{ backgroundColor: '#D4A574' }}
+                            animate={{ opacity: [0.3, 1, 0.3] }}
+                            transition={{ duration: 1.5, repeat: Infinity }}
+                        />
+                        <motion.div
+                            className="w-2 h-2 rounded-full"
+                            style={{ backgroundColor: '#D4A574' }}
+                            animate={{ opacity: [0.3, 1, 0.3] }}
+                            transition={{ duration: 1.5, repeat: Infinity, delay: 0.3 }}
+                        />
+                        <motion.div
+                            className="w-2 h-2 rounded-full"
+                            style={{ backgroundColor: '#D4A574' }}
+                            animate={{ opacity: [0.3, 1, 0.3] }}
+                            transition={{ duration: 1.5, repeat: Infinity, delay: 0.6 }}
+                        />
+                    </div>
+
+                    {/* Start with AI button */}
+                    <button
+                        className="w-full py-3 rounded-lg font-bold text-sm transition-all hover:scale-[1.02] active:scale-[0.98] mb-3"
+                        style={{
+                            fontFamily: 'Cinzel, Georgia, serif',
+                            background: 'linear-gradient(135deg, #D4A574, #CD7F32)',
+                            color: '#1A1A2E',
+                            boxShadow: '0 4px 20px rgba(212, 165, 116, 0.3)',
+                        }}
+                        onClick={() => startGame()}
+                    >
+                        Avvia Partita (riempi con AI)
+                    </button>
+
+                    {/* Leave button */}
+                    <button
+                        className="w-full py-2 rounded-lg font-medium text-sm transition-all hover:bg-white/5"
+                        style={{
+                            color: 'rgba(255,255,255,0.4)',
+                            border: '1px solid rgba(255,255,255,0.08)',
+                        }}
+                        onClick={leaveRoom}
+                    >
+                        Esci dalla Lobby
+                    </button>
+                </motion.div>
+            </div>
+        );
+    }
+
+    // ==========================================
+    // SCREEN 3: Game
+    // ==========================================
+    if (!gameState || !currentPlayer) {
+        return (
+            <div className="min-h-screen flex items-center justify-center" style={{ background: '#0F0F23' }}>
+                <div className="text-white/40 text-lg">Caricamento partita...</div>
+            </div>
+        );
+    }
+
+    const isPlayerReady = currentPlayer.isReady;
+    const handCards = Array.from(currentPlayer.hand).map((id: unknown) => ({
+        id: id as string,
+        name: (id as string).replace(/_/g, ' '),
+        epoch: gameState.epoch,
+    }));
+
+    return (
+        <div
+            className="min-h-screen relative overflow-hidden"
+            style={{
+                background: 'radial-gradient(ellipse at 50% 30%, #1A1A2E, #0F0F23)',
+            }}
+        >
+            {/* ========== TOP BAR ========== */}
+            <div
+                className="fixed top-0 left-0 right-0 z-50 px-6 py-3 flex items-center justify-between"
+                style={{
+                    background: 'linear-gradient(to bottom, rgba(15,15,35,0.95), rgba(15,15,35,0.7))',
+                    borderBottom: '1px solid rgba(212, 165, 116, 0.15)',
+                    backdropFilter: 'blur(12px)',
+                }}
+            >
+                {/* Left: epoch & turn */}
+                <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
+                        <span
+                            className="text-lg font-bold"
+                            style={{ fontFamily: 'Cinzel, Georgia, serif', color: '#D4A574' }}
+                        >
+                            {['I', 'II', 'III'][gameState.epoch - 1]}
+                        </span>
+                        <span className="text-white/30 text-xs">
+                            Turno {gameState.turn}/6
+                        </span>
+                    </div>
+                    <div className="flex items-center gap-1 text-xs text-white/40">
+                        <span>{gameState.direction === 'LEFT' ? '\u2B05' : '\u27A1'}</span>
+                        <span>{gameState.direction === 'LEFT' ? 'Sinistra' : 'Destra'}</span>
+                    </div>
+                </div>
+
+                {/* Center: phase */}
+                <div className="flex items-center gap-2">
+                    {turnProgress && (
+                        <span className="text-xs text-white/40 mr-2">
+                            {turnProgress.ready}/{turnProgress.total} pronti
+                        </span>
+                    )}
+                    <div
+                        className="w-2 h-2 rounded-full animate-pulse"
+                        style={{
+                            backgroundColor: phase === 'DRAFT' ? '#16a34a' : phase === 'WAR' ? '#dc2626' : '#f59e0b',
+                        }}
+                    />
+                    <span className="text-xs text-white/50 uppercase tracking-wider">
+                        {phase === 'DRAFT' ? 'Scegli carta' : phase === 'WAR' ? 'Guerra' : phase}
+                    </span>
+                </div>
+
+                {/* Right: stats */}
+                <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-1.5" title="Monete">
+                        <span className="text-base">💰</span>
+                        <span className="text-yellow-400 font-bold font-mono text-sm">{currentPlayer.coins}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5" title="Militare">
+                        <span className="text-base">⚔️</span>
+                        <span className="text-red-400 font-bold font-mono text-sm">{currentPlayer.militaryPower}</span>
+                    </div>
+                    <button
+                        className="text-xs text-white/30 hover:text-white/60 transition-colors ml-2"
+                        onClick={leaveRoom}
+                        title="Lascia partita"
+                    >
+                        ✕
+                    </button>
+                </div>
+            </div>
+
+            {/* ========== GAME CONTENT ========== */}
+            <div className="pt-16 pb-64 px-4">
+                <div className="max-w-7xl mx-auto grid grid-cols-12 gap-4">
+
+                    {/* LEFT COLUMN */}
+                    <div className="col-span-2 flex flex-col gap-4 pt-4">
+                        {neighbors.left && (
+                            <NeighborPanel
+                                direction="left"
+                                neighbor={{
+                                    sessionId: neighbors.left.sessionId,
+                                    wonderId: neighbors.left.wonderId,
+                                    coins: neighbors.left.coins,
+                                    militaryPower: neighbors.left.militaryPower,
+                                    builtCardsCount: neighbors.left.cityCards.length,
+                                    wonderStagesBuilt: neighbors.left.wonderStagesBuilt,
+                                    isAI: neighbors.left.isAI,
+                                }}
+                            />
+                        )}
+                        {otherPlayers.slice(0, 2).map((player: ClientPlayer) => (
+                            <PlayerPanel
+                                key={player.sessionId}
+                                player={player}
+                                isCurrentPlayer={false}
+                                position="left"
+                            />
+                        ))}
+                    </div>
+
+                    {/* CENTER */}
+                    <div className="col-span-8 flex flex-col gap-4">
+                        <WonderBoard
+                            wonderId={currentPlayer.wonderId}
+                            wonderSide={currentPlayer.wonderSide}
+                            stagesBuilt={currentPlayer.wonderStagesBuilt}
+                        />
+                        <BuiltCardsArea
+                            cards={Array.from(currentPlayer.cityCards).map((id: unknown) => ({
+                                id: id as string,
+                                name: (id as string).replace(/_/g, ' '),
+                            }))}
+                        />
+                    </div>
+
+                    {/* RIGHT COLUMN */}
+                    <div className="col-span-2 flex flex-col gap-4 pt-4">
+                        {neighbors.right && (
+                            <NeighborPanel
+                                direction="right"
+                                neighbor={{
+                                    sessionId: neighbors.right.sessionId,
+                                    wonderId: neighbors.right.wonderId,
+                                    coins: neighbors.right.coins,
+                                    militaryPower: neighbors.right.militaryPower,
+                                    builtCardsCount: neighbors.right.cityCards.length,
+                                    wonderStagesBuilt: neighbors.right.wonderStagesBuilt,
+                                    isAI: neighbors.right.isAI,
+                                }}
+                            />
+                        )}
+                        {otherPlayers.slice(2).map((player: ClientPlayer) => (
+                            <PlayerPanel
+                                key={player.sessionId}
+                                player={player}
+                                isCurrentPlayer={false}
+                                position="right"
+                            />
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* ========== CARD HAND ========== */}
+            <CardHand
+                cards={handCards}
+                onSelectCard={handleCardAction}
+                disabled={isPlayerReady || phase !== 'DRAFT'}
+            />
+
+            {/* ========== READY INDICATOR ========== */}
+            <AnimatePresence>
+                {isPlayerReady && phase === 'DRAFT' && (
+                    <motion.div
+                        className="fixed bottom-52 left-1/2 -translate-x-1/2 z-50 px-6 py-2 rounded-full"
+                        style={{
+                            background: 'linear-gradient(135deg, rgba(22, 163, 74, 0.9), rgba(21, 128, 61, 0.9))',
+                            border: '1px solid rgba(34, 197, 94, 0.5)',
+                            boxShadow: '0 4px 20px rgba(22, 163, 74, 0.3)',
+                        }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 20 }}
+                    >
+                        <span className="text-white font-medium text-sm">
+                            In attesa degli altri giocatori...
+                        </span>
                     </motion.div>
                 )}
             </AnimatePresence>
 
-            {/* ═══════════════ LOBBY VIEW ═══════════════ */}
-            {currentView === 'lobby' && (
-                <div className="flex items-center justify-center min-h-screen">
-                    <motion.div
-                        className="glass-panel p-8 w-full max-w-md mx-4"
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        {/* Title */}
-                        <div className="text-center mb-8">
-                            <h1 className="font-display text-5xl font-bold text-ancient-gold mb-2">
-                                7 Wonders
-                            </h1>
-                            <p className="text-white/50 text-sm">Build your civilization across three ages</p>
-                            <div className="mt-3 h-px bg-gradient-to-r from-transparent via-ancient-gold/30 to-transparent" />
-                        </div>
-
-                        {/* Create game */}
-                        <div className="space-y-4 mb-6">
-                            <h2 className="font-display text-lg text-ancient-gold/80">Create New Game</h2>
-                            <div>
-                                <label className="block text-xs text-white/60 mb-1">Number of Players</label>
-                                <div className="flex gap-2">
-                                    {[3, 4, 5, 6, 7].map((n) => (
-                                        <button
-                                            key={n}
-                                            id={`player-count-${n}`}
-                                            className={`
-                                                flex-1 py-2 rounded-lg text-sm font-medium transition-all
-                                                ${playerCount === n
-                                                    ? 'bg-ancient-gold/20 border border-ancient-gold/50 text-ancient-gold'
-                                                    : 'bg-white/5 border border-white/10 text-white/60 hover:bg-white/10'}
-                                            `}
-                                            onClick={() => setPlayerCount(n)}
-                                        >
-                                            {n}
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <button
-                                id="btn-create-room"
-                                className="btn-primary w-full text-center"
-                                onClick={handleCreateRoom}
-                                disabled={isConnected}
-                            >
-                                🏛️ Create Room
-                            </button>
-                        </div>
-
-                        {/* Divider */}
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="flex-1 h-px bg-white/10" />
-                            <span className="text-xs text-white/30">OR</span>
-                            <div className="flex-1 h-px bg-white/10" />
-                        </div>
-
-                        {/* Join game */}
-                        <div className="space-y-3">
-                            <h2 className="font-display text-lg text-ancient-gold/80">Join Game</h2>
-                            <input
-                                id="room-id-input"
-                                type="text"
-                                placeholder="Enter Room ID..."
-                                className="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-lg text-sm text-white placeholder-white/30 focus:outline-none focus:border-ancient-gold/50"
-                                value={roomIdInput}
-                                onChange={(e) => setRoomIdInput(e.target.value)}
-                                onKeyDown={(e) => e.key === 'Enter' && handleJoinRoom()}
-                            />
-                            <button
-                                id="btn-join-room"
-                                className="btn-primary w-full text-center opacity-80 hover:opacity-100"
-                                onClick={handleJoinRoom}
-                                disabled={isConnected || !roomIdInput.trim()}
-                            >
-                                🚪 Join Room
-                            </button>
-                        </div>
-
-                        {/* Connection status */}
-                        {isConnected && (
-                            <motion.div
-                                className="mt-4 flex items-center gap-2 text-sm text-emerald-400"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                            >
-                                <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                                Connected — waiting for players...
-                            </motion.div>
-                        )}
-                    </motion.div>
-                </div>
-            )}
-
-            {/* ═══════════════ GAME VIEW ═══════════════ */}
-            {currentView === 'game' && gameState && gameState.phase !== 'LOBBY' && (
-                <div className="relative min-h-screen pb-52">
-                    {/* Top bar */}
-                    <div className="fixed top-0 left-0 right-0 z-30 glass-panel rounded-none border-x-0 border-t-0 px-6 py-3">
-                        <div className="flex items-center justify-between max-w-7xl mx-auto">
-                            <div className="flex items-center gap-4">
-                                <h1 className="font-display text-xl font-bold text-ancient-gold">7 Wonders</h1>
-                                <div className="h-4 w-px bg-white/20" />
-                                <div className="flex items-center gap-3 text-sm">
-                                    <span className="text-white/60">
-                                        Age <span className="text-white font-bold">{gameState.epoch}</span>
-                                    </span>
-                                    <span className="text-white/60">
-                                        Turn <span className="text-white font-bold">{gameState.turn}</span>/6
-                                    </span>
-                                    <span className={`
-                                        px-2 py-0.5 rounded text-xs font-medium
-                                        ${gameState.phase === 'DRAFT' ? 'bg-blue-500/20 text-blue-300' : ''}
-                                        ${gameState.phase === 'RESOLUTION' ? 'bg-amber-500/20 text-amber-300' : ''}
-                                        ${gameState.phase === 'WAR' ? 'bg-red-500/20 text-red-300' : ''}
-                                    `}>
-                                        {gameState.phase}
-                                    </span>
-                                </div>
-                            </div>
-
-                            {/* Turn progress */}
-                            {turnProgress && (
-                                <div className="flex items-center gap-2 text-sm">
-                                    <span className="text-white/50">Ready:</span>
-                                    <span className="text-ancient-gold font-bold">
-                                        {turnProgress.ready}/{turnProgress.total}
-                                    </span>
-                                    <div className="w-20 h-1.5 bg-white/10 rounded-full overflow-hidden">
-                                        <motion.div
-                                            className="h-full bg-ancient-gold rounded-full"
-                                            animate={{ width: `${(turnProgress.ready / turnProgress.total) * 100}%` }}
-                                        />
-                                    </div>
-                                </div>
-                            )}
-
-                            {/* Right controls */}
-                            <div className="flex items-center gap-3 text-sm text-white/50">
-                                <button
-                                    id="btn-scoreboard"
-                                    className="px-3 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white/70 hover:text-white text-xs font-medium transition-all"
-                                    onClick={() => setShowScoreboard(true)}
-                                >
-                                    📊 Score
-                                </button>
-                                <span>{gameState.direction === 'LEFT' ? '⬅️' : '➡️'}</span>
-                                <span>Pass {gameState.direction.toLowerCase()}</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Neighbor panels */}
-                    <div className="fixed top-20 left-4 z-20 w-48">
-                        <NeighborPanel direction="left" neighbor={neighbors.left} />
-                    </div>
-                    <div className="fixed top-20 right-4 z-20 w-48">
-                        <NeighborPanel direction="right" neighbor={neighbors.right} />
-                    </div>
-
-                    {/* Player panels (other players) */}
-                    {otherPlayers.slice(2).map(({ player, position }) => (
-                        <PlayerPanel
-                            key={player.sessionId}
-                            player={player}
-                            isCurrentPlayer={false}
-                            position={position}
-                        />
-                    ))}
-
-                    {/* Center: Wonder board + resources */}
-                    <div className="pt-24 px-8 flex justify-center">
-                        {currentPlayer && currentPlayer.wonderId && (
-                            <div className="w-full max-w-xl">
-                                <WonderBoard
-                                    wonderId={currentPlayer.wonderId}
-                                    wonderSide={currentPlayer.wonderSide}
-                                    stagesBuilt={currentPlayer.wonderStagesBuilt}
-                                    startingResource={undefined}
-                                    onBuildStage={() => {
-                                        // Future: integrate wonder building from board click
-                                    }}
-                                />
-
-                                {/* Resource panel */}
-                                <div className="mt-3">
-                                    <ResourcePanel
-                                        coins={currentPlayer.coins}
-                                        militaryPower={currentPlayer.militaryPower}
-                                        scienceCompass={currentPlayer.scienceCompass}
-                                        scienceGear={currentPlayer.scienceGear}
-                                        scienceTablet={currentPlayer.scienceTablet}
-                                        builtCardColors={builtCardColors}
-                                    />
-                                </div>
-                            </div>
-                        )}
-                    </div>
-
-                    {/* Card hand */}
-                    <CardHand
-                        cards={handCards}
-                        onSelectCard={(cardId, action) => selectCard(cardId, action)}
-                        disabled={currentPlayer?.isReady ?? false}
+            {/* ========== EPOCH TRANSITION ========== */}
+            <AnimatePresence>
+                {showEpochTransition && epochEvent && (
+                    <EpochTransition
+                        epoch={epochEvent.epoch}
+                        onComplete={() => {
+                            setShowEpochTransition(false);
+                            dismissEpoch();
+                        }}
                     />
+                )}
+            </AnimatePresence>
 
-                    {/* Ready overlay */}
-                    <AnimatePresence>
-                        {currentPlayer?.isReady && (
-                            <motion.div
-                                className="fixed bottom-52 left-1/2 -translate-x-1/2 z-30"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0 }}
-                            >
-                                <div className="glass-panel px-6 py-3 border-emerald-500/30 flex items-center gap-3">
-                                    <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse" />
-                                    <span className="text-emerald-300 text-sm font-medium">
-                                        Waiting for other players...
-                                    </span>
-                                </div>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-
-                    {/* Scoreboard overlay */}
-                    <Scoreboard
-                        players={gameState.players}
-                        currentSessionId={sessionId}
-                        visible={showScoreboard}
-                        onClose={() => setShowScoreboard(false)}
-                    />
-
-                    {/* Epoch transition overlay */}
-                    {epochEvent && (
-                        <EpochTransition
-                            epoch={epochEvent.epoch}
-                            visible={true}
-                            onComplete={dismissEpoch}
-                        />
-                    )}
-
-                    {/* Military results overlay */}
-                    {warResults && (
-                        <MilitaryResults
-                            epoch={warResults.epoch}
-                            results={(warResults.results as Array<{
-                                playerId: string;
-                                tokens: Array<{ value: number; type: string }>;
-                            }>).flatMap(r =>
-                                r.tokens.map(t => ({
-                                    opponentName: r.playerId === sessionId ? 'Neighbor' : `Player`,
-                                    yourPower: 0,
-                                    theirPower: 0,
-                                    result: (t.type === 'VICTORY' ? 'victory' : t.value < 0 ? 'defeat' : 'draw') as 'victory' | 'defeat' | 'draw',
-                                    token: t.value,
-                                }))
-                            )}
-                            visible={true}
-                            onClose={dismissWar}
-                        />
-                    )}
-                </div>
-            )}
-
-            {/* ═══════════════ RESULTS VIEW ═══════════════ */}
-            {currentView === 'results' && finalScores && (
-                <GameResults
-                    scores={finalScores as Array<{
-                        playerId: string;
-                        playerName?: string;
-                        wonderId?: string;
-                        military: number;
-                        treasury: number;
-                        wonder: number;
-                        civilian: number;
-                        science: number;
-                        commerce: number;
-                        guild: number;
-                        total: number;
-                    }>}
-                    currentPlayerId={sessionId}
-                    onPlayAgain={handlePlayAgain}
-                />
-            )}
-
-            {/* Fallback results if no final scores yet but game finished */}
-            {currentView === 'results' && !finalScores && gameState && (
-                <div className="flex items-center justify-center min-h-screen">
+            {/* ========== GAME FINISHED ========== */}
+            {phase === 'FINISHED' && (
+                <motion.div
+                    className="fixed inset-0 z-[60] flex items-center justify-center"
+                    style={{
+                        background: 'rgba(0,0,0,0.85)',
+                        backdropFilter: 'blur(8px)',
+                    }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                >
                     <motion.div
-                        className="glass-panel p-8 w-full max-w-lg mx-4"
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
+                        className="text-center p-8 rounded-2xl max-w-xl"
+                        style={{
+                            background: 'linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))',
+                            border: '1px solid rgba(212, 165, 116, 0.3)',
+                        }}
+                        initial={{ scale: 0.8, y: 30 }}
+                        animate={{ scale: 1, y: 0 }}
+                        transition={{ type: 'spring', stiffness: 200 }}
                     >
-                        <div className="text-center mb-6">
-                            <h1 className="font-display text-4xl font-bold text-ancient-gold mb-2">
-                                🏆 Game Over
-                            </h1>
-                            <p className="text-white/50 text-sm">Computing final scores...</p>
-                        </div>
-                        <button
-                            id="btn-new-game"
-                            className="btn-primary w-full mt-6 text-center"
-                            onClick={handlePlayAgain}
+                        <h2
+                            className="text-4xl font-bold mb-4"
+                            style={{
+                                fontFamily: 'Cinzel, Georgia, serif',
+                                background: 'linear-gradient(to right, #D4A574, #FFD700, #CD7F32)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                            }}
                         >
-                            🔄 New Game
+                            Partita Conclusa!
+                        </h2>
+
+                        {finalScores && (
+                            <div className="mt-6 space-y-2">
+                                {(finalScores as Array<{ playerId: string; total: number }>).map((score, index) => (
+                                    <div
+                                        key={score.playerId}
+                                        className="flex items-center justify-between px-4 py-2 rounded-lg"
+                                        style={{
+                                            background: index === 0
+                                                ? 'linear-gradient(135deg, rgba(212, 165, 116, 0.2), rgba(205, 127, 50, 0.1))'
+                                                : 'rgba(255,255,255,0.03)',
+                                            border: index === 0
+                                                ? '1px solid rgba(212, 165, 116, 0.4)'
+                                                : '1px solid rgba(255,255,255,0.05)',
+                                        }}
+                                    >
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-lg">
+                                                {index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}.`}
+                                            </span>
+                                            <span className="text-sm text-white/70">
+                                                {score.playerId === sessionId ? 'Tu' : 'Giocatore'}
+                                            </span>
+                                        </div>
+                                        <span className="text-lg font-bold" style={{ color: '#D4A574' }}>
+                                            {score.total} VP
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+
+                        <button
+                            className="mt-6 px-6 py-2 rounded-lg font-medium text-sm transition-all hover:scale-[1.02]"
+                            style={{
+                                background: 'rgba(255,255,255,0.08)',
+                                border: '1px solid rgba(212, 165, 116, 0.3)',
+                                color: '#D4A574',
+                            }}
+                            onClick={leaveRoom}
+                        >
+                            Torna alla Home
                         </button>
                     </motion.div>
-                </div>
+                </motion.div>
             )}
 
-            {/* ═══════════════ WAITING/LOBBY STATE ═══════════════ */}
-            {currentView === 'game' && gameState?.phase === 'LOBBY' && (
-                <div className="flex items-center justify-center min-h-screen">
+            {/* ========== ERROR TOAST ========== */}
+            <AnimatePresence>
+                {error && (
                     <motion.div
-                        className="glass-panel p-8 text-center"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
+                        className="fixed top-20 left-1/2 -translate-x-1/2 z-[60] px-5 py-2 rounded-lg cursor-pointer"
+                        style={{
+                            background: 'rgba(220, 38, 38, 0.9)',
+                            border: '1px solid rgba(248, 113, 113, 0.5)',
+                            boxShadow: '0 4px 20px rgba(220, 38, 38, 0.3)',
+                        }}
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        onClick={clearError}
                     >
-                        <div className="animate-float text-6xl mb-4">🏛️</div>
-                        <h2 className="font-display text-2xl text-ancient-gold mb-2">
-                            Waiting for Players
-                        </h2>
-                        <p className="text-white/50 text-sm mb-4">
-                            {gameState.players.size} players connected
-                        </p>
-                        <p className="text-xs text-white/30">
-                            Room ID: <code className="bg-white/10 px-2 py-0.5 rounded">{gameState.gameId}</code>
-                        </p>
+                        <span className="text-white text-sm">{error}</span>
                     </motion.div>
-                </div>
-            )}
+                )}
+            </AnimatePresence>
         </div>
     );
 }
